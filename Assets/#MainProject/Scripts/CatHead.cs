@@ -13,7 +13,7 @@ public class CatHead : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         GameObject otherCat = collision.gameObject;
-
+        CameraShake.Instance.ShakeCamera();
         // Check if the other object is a cat and has the same type
         CatHead otherCatHead = otherCat.GetComponent<CatHead>();
         if (otherCatHead != null && otherCatHead.catType == catType)

@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f56dbee02d39f2c4cb10595fbbb291ed, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 24.81
+      value: 30.29
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f56dbee02d39f2c4cb10595fbbb291ed, type: 3}
       propertyPath: m_LocalPosition.z
@@ -83,7 +83,7 @@ PrefabInstance:
     - target: {fileID: -4075634523548401309, guid: f56dbee02d39f2c4cb10595fbbb291ed, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 042ac6209adf7d142a536dcd0d5b8057, type: 2}
+      objectReference: {fileID: 2100000, guid: d2ad4f9c6598e93449642b38854c35f3, type: 2}
     - target: {fileID: -4075634523548401309, guid: f56dbee02d39f2c4cb10595fbbb291ed, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1107ecacbcd822649a3c9e9715b2f53c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  catHead: {fileID: 2100000, guid: 042ac6209adf7d142a536dcd0d5b8057, type: 2}
+  catHead: {fileID: 2100000, guid: d2ad4f9c6598e93449642b38854c35f3, type: 2}
   catBody: {fileID: 5401550346798723347}
   maxDeform: 0
   minDeform: 0
