@@ -8,17 +8,20 @@ public class CatHead : MonoBehaviour
 
     private void Start()
     {
-
+        CameraShake.Instance.ShakeCamera();
+        
     }
     private void OnCollisionEnter(Collision collision)
     {
         GameObject otherCat = collision.gameObject;
-        CameraShake.Instance.ShakeCamera();
+        
         // Check if the other object is a cat and has the same type
         CatHead otherCatHead = otherCat.GetComponent<CatHead>();
         if (otherCatHead != null && otherCatHead.catType == catType)
         {
             // Combine the cats using the CombinationManager
+            AudioManager.Instance.PlaySFX("SpawnSound");
+            CameraShake.Instance.ShakeCamera();
             gameObject.GetComponent<SphereCollider>().isTrigger = true;
             GameObject newCat = CombinationManager.Instance.CombineCats(gameObject, otherCat);
 
