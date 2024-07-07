@@ -7,9 +7,15 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioSource sfxSource2;
 
     [SerializeField] private List<AudioClipEntry> audioClipEntries; // List of AudioClipEntry to populate the dictionary
     private Dictionary<string, AudioClip> audioEffects = new Dictionary<string, AudioClip>();
+
+    // Cooldown dictionary
+    private Dictionary<string, float> effectCooldowns = new Dictionary<string, float>();
+    // Cooldown duration in seconds
+    [SerializeField] private float cooldownDuration;
 
     private void Awake()
     {
@@ -34,6 +40,7 @@ public class AudioManager : MonoBehaviour
             if (entry.clip != null && !string.IsNullOrEmpty(entry.name))
             {
                 audioEffects[entry.name] = entry.clip;
+                effectCooldowns[entry.name] = 0f; // Initialize cooldown dictionary
             }
         }
     }
@@ -52,6 +59,28 @@ public class AudioManager : MonoBehaviour
         if (audioEffects.TryGetValue(effectName, out var clip))
         {
             sfxSource.PlayOneShot(clip);
+        }
+        else
+        {
+            Debug.LogWarning($"Sound effect '{effectName}' not found!");
+        }
+    }
+
+    public void PlaySFX2(string effectName)
+    {
+        if (audioEffects.TryGetValue(effectName, out var clip))
+        {
+            // Check if the cooldown has expired
+            if (Time.time >= effectCooldowns[effectName])
+            {
+                sfxSource2.PlayOneShot(clip);
+                // Set the next valid time to play this sound
+                effectCooldowns[effectName] = Time.time + cooldownDuration;
+            }
+            else
+            {
+                Debug.Log($"Sound effect '{effectName}' is on cooldown.");
+            }
         }
         else
         {
@@ -83,7 +112,6 @@ public class AudioManager : MonoBehaviour
         sfxSource.volume = volume;
     }
 }
-
 
 [System.Serializable]
 public class AudioClipEntry

@@ -452,7 +452,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8015781452547836048
 Transform:
   m_ObjectHideFlags: 0
@@ -629,7 +629,7 @@ GameObject:
   - component: {fileID: 6547688107873650965}
   m_Layer: 3
   m_Name: 'Cato '
-  m_TagString: Untagged
+  m_TagString: Gato
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -960,6 +960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   catType: 0
+  splashSound: 0
 --- !u!64 &6547688107873650965
 MeshCollider:
   m_ObjectHideFlags: 0

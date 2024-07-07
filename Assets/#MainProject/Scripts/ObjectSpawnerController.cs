@@ -1,20 +1,41 @@
 using UnityEngine;
+using System.Collections;
 
 public class ObjectSpawnerController : MonoBehaviour
 {
     public GameObject[] objectsToSpawn;
     public Transform referenceObject; // Reference object for the spawn location
     private ObjectSpawnerModel model;
-    private bool isDragging = false;
 
     [SerializeField] private float rightBarrier;
     [SerializeField] private float leftBarrier;
 
+    public int catNumber;
     public float speed = 1f;
+    public float spawnInterval = 3f; // Initial interval between spawns in seconds
+    public float minSpawnInterval = 1.5f; // Minimum interval between spawns
+
+    private float normalTimeScale = 1.5f;
+    [SerializeField] private float slowMotionTimeScale = 0.8f;
+    [SerializeField] private float transitionDuration = 1f; // Duration for the smooth transition
+
+    [SerializeField] private float maxSlowMotionDuration = 5f; // Maximum duration for slow motion
+    [SerializeField] private float slowMotionRechargeTime = 2f; // Recharge time in seconds
+    private float currentSlowMotionTime;
+    private bool isRecharging = false;
+    private bool isSlowMotionActive = false;
+
+    private int objectsSpawnedCount = 0;
+    private const int intervalReductionCount = 10; // Number of objects spawned before reducing spawn interval
+    [SerializeField] private float intervalReductionAmount = 0.2f; // Amount to reduce spawn interval
 
     void Start()
     {
         model = new ObjectSpawnerModel(objectsToSpawn);
+        Time.timeScale = normalTimeScale; // Set the initial time scale
+        currentSlowMotionTime = maxSlowMotionDuration;
+        UIManager.Instance.SetMaxSlowMotionBar(maxSlowMotionDuration);
+        StartCoroutine(SpawnObjectPeriodically());
     }
 
     void Update()
@@ -31,51 +52,94 @@ public class ObjectSpawnerController : MonoBehaviour
             switch (touch.phase)
             {
                 case TouchPhase.Began:
-                    isDragging = true;
-                    break;
-
-                case TouchPhase.Moved:
-                    if (isDragging)
-                    {
-                        MoveReferenceObject(touch.deltaPosition);
-                    }
+                    TriggerSlowMotion();
                     break;
 
                 case TouchPhase.Ended:
-                    if (isDragging)
-                    {
-                        SpawnObject();
-                        isDragging = false;
-                    }
+                    ResetTimeScale();
                     break;
             }
         }
     }
 
-    void MoveReferenceObject(Vector2 deltaPosition)
+    // Function to trigger slow motion
+    public void TriggerSlowMotion()
     {
-        // Use the delta position to move the reference object on the z-axis
-        float horizontalMovement = deltaPosition.x * speed * Time.deltaTime;
-        float newZPosition = referenceObject.position.z + horizontalMovement;
+        if (currentSlowMotionTime > 0 && !isRecharging)
+        {
+            isSlowMotionActive = true;
+            Time.timeScale = slowMotionTimeScale;
+            Time.fixedDeltaTime = Time.timeScale * 0.01f;
+            UIManager.Instance.StartDecreaseSlowMotionBar(); // Start decreasing slider value
+            StartCoroutine(SlowMotionDuration());
+        }
+    }
 
-        // Ensure the reference object stays within the left and right barriers
-        newZPosition = Mathf.Clamp(newZPosition, leftBarrier, rightBarrier);
+    // Function to reset to normal time scale
+    public void ResetTimeScale()
+    {
+        isSlowMotionActive = false;
+        Time.timeScale = normalTimeScale;
+        UIManager.Instance.StartIncreaseSlowMotionBar(); // Start increasing slider value
+        StartCoroutine(RechargeSlowMotion());
+    }
 
-        // Update the reference object's position
-        referenceObject.position = new Vector3(referenceObject.position.x, referenceObject.position.y, newZPosition);
+    // Coroutine to handle slow motion duration
+    private IEnumerator SlowMotionDuration()
+    {
+        while (isSlowMotionActive && currentSlowMotionTime > 0)
+        {
+            currentSlowMotionTime -= Time.unscaledDeltaTime;
+            // UIManager.Instance.UpdateSlowMotionBar(currentSlowMotionTime);
+            yield return null;
+        }
 
-        // Update the spawner's position to follow the reference object
-        transform.position = referenceObject.position;
+        ResetTimeScale();
+        StartCoroutine(RechargeSlowMotion());
+    }
+
+    // Coroutine to recharge slow motion time
+    private IEnumerator RechargeSlowMotion()
+    {
+        isRecharging = true;
+        while (currentSlowMotionTime < maxSlowMotionDuration)
+        {
+            currentSlowMotionTime += slowMotionRechargeTime * Time.unscaledDeltaTime;
+            // UIManager.Instance.UpdateSlowMotionBar(currentSlowMotionTime);
+            yield return null;
+        }
+
+        currentSlowMotionTime = maxSlowMotionDuration;
+        // UIManager.Instance.UpdateSlowMotionBar(maxSlowMotionDuration);
+        isRecharging = false;
+    }
+
+    // Coroutine for periodic spawning
+    private IEnumerator SpawnObjectPeriodically()
+    {
+        while (true)
+        {
+            SpawnObject();
+            yield return new WaitForSeconds(spawnInterval);
+        }
     }
 
     void SpawnObject()
     {
-        //GetNextObjectToSpawn();
         if (referenceObject != null)
         {
             Vector3 spawnPosition = referenceObject.position;
             spawnPosition.y -= 2f; // Adjust the Y position by 2 units
             model.SpawnNextObject(spawnPosition, null);
+            AudioManager.Instance.PlaySFX2("SpawnSound");
+
+            objectsSpawnedCount++;
+
+            // Check if it's time to reduce spawn interval
+            if (objectsSpawnedCount % intervalReductionCount == 0 && spawnInterval > minSpawnInterval)
+            {
+                spawnInterval -= intervalReductionAmount;
+            }
         }
         else
         {
@@ -85,7 +149,6 @@ public class ObjectSpawnerController : MonoBehaviour
 
     public GameObject GetNextObjectToSpawn()
     {
-        
         return model.GetNextObjectToSpawn();
     }
 }

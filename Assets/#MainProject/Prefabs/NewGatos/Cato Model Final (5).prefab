@@ -24495,7 +24495,7 @@ GameObject:
   - component: {fileID: 5656431004871827608}
   m_Layer: 3
   m_Name: 'Cato '
-  m_TagString: Untagged
+  m_TagString: Gato
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24826,6 +24826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   catType: 4
+  splashSound: 0
 --- !u!64 &5656431004871827608
 MeshCollider:
   m_ObjectHideFlags: 0
