@@ -15,7 +15,7 @@ public class ObjectSpawnerController : MonoBehaviour
     public float spawnInterval = 3f; // Initial interval between spawns in seconds
     public float minSpawnInterval = 1.5f; // Minimum interval between spawns
 
-    private float normalTimeScale = 1.5f;
+    [SerializeField] private float normalTimeScale = 1.5f;
     [SerializeField] private float slowMotionTimeScale = 0.8f;
     [SerializeField] private float transitionDuration = 1f; // Duration for the smooth transition
 
@@ -151,4 +151,6 @@ public class ObjectSpawnerController : MonoBehaviour
     {
         return model.GetNextObjectToSpawn();
     }
+
+   
 }

@@ -29,7 +29,7 @@ public class ObjectSpawnerModel
             Debug.LogWarning("No objects to spawn.");
             return;
         }
-        GameObject.Instantiate(objectsToSpawn[nextObjectIndex], position, Quaternion.identity, parent);
+        GameObject.Instantiate(objectsToSpawn[nextObjectIndex], position, Quaternion.Euler(0, 180, 0), parent);
         SetNextObjectIndex();
     }
 

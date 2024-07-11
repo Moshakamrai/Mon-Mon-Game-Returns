@@ -51,7 +51,7 @@ public class CatHead : MonoBehaviour
 
     private void MoveObject(Vector2 deltaPosition)
     {
-        Debug.Log("cato should move");
+       // Debug.Log("cato should move");
         // Use the delta position to move the object on the x-axis
         float horizontalMovement = deltaPosition.x * speed * Time.deltaTime;
         Vector3 newPosition = transform.position + new Vector3(0f, 0f, horizontalMovement);

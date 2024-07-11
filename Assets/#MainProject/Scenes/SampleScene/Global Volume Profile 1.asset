@@ -22,40 +22,6 @@ MonoBehaviour:
   gain:
     m_OverrideState: 0
     m_Value: {x: 1, y: 1, z: 1, w: 0}
---- !u!114 &-1007361646106227987
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 558a8e2b6826cf840aae193990ba9f2e, type: 3}
-  m_Name: ShadowsMidtonesHighlights
-  m_EditorClassIdentifier: 
-  active: 1
-  shadows:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
-  midtones:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
-  highlights:
-    m_OverrideState: 0
-    m_Value: {x: 0.7142228, y: 1, z: 0.6125672, w: 0}
-  shadowsStart:
-    m_OverrideState: 0
-    m_Value: 0
-  shadowsEnd:
-    m_OverrideState: 0
-    m_Value: 0.3
-  highlightsStart:
-    m_OverrideState: 0
-    m_Value: 0.55
-  highlightsEnd:
-    m_OverrideState: 0
-    m_Value: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,7 +38,6 @@ MonoBehaviour:
   - {fileID: 5004965553786155749}
   - {fileID: 3165363951798644589}
   - {fileID: -3869387760606950040}
-  - {fileID: -1007361646106227987}
   - {fileID: 9006817671521871711}
   - {fileID: 4730865974610391860}
   - {fileID: 2799317686384325139}
@@ -194,13 +159,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2db86121404754db890f4c8dfe81b2, type: 3}
   m_Name: Bloom
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   skipIterations:
     m_OverrideState: 0
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0.85
+    m_Value: 1
   intensity:
     m_OverrideState: 1
     m_Value: 15

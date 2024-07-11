@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
@@ -79,12 +80,12 @@ public class AudioManager : MonoBehaviour
             }
             else
             {
-                Debug.Log($"Sound effect '{effectName}' is on cooldown.");
+                //Debug.Log($"Sound effect '{effectName}' is on cooldown.");
             }
         }
         else
         {
-            Debug.LogWarning($"Sound effect '{effectName}' not found!");
+           // Debug.LogWarning($"Sound effect '{effectName}' not found!");
         }
     }
 
