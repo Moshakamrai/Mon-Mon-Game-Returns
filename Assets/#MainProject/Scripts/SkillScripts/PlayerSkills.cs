@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class PlayerSkills : MonoBehaviour
 {
@@ -7,8 +8,8 @@ public class PlayerSkills : MonoBehaviour
     public float nightVisionBlastRadius = 1f;
     public float familyBlastPower = 1f;
     public float levelAnnihilateBlastPower = 1f;
-    public float verticalBlastPower = 1f;
-
+    public float verticalBlastWidth = 5f;
+    public float verticalBlastDepth = 10f; // Adjust as needed
     public List<Skill> learnedSkills = new List<Skill>();
 
     public void IncreaseSupernovaBoomRadius(float amount)
@@ -33,7 +34,7 @@ public class PlayerSkills : MonoBehaviour
 
     public void IncreaseVerticalBlastPower(float amount)
     {
-        verticalBlastPower += amount;
+        verticalBlastWidth += amount;
     }
 
     private void OnEnable()
@@ -49,38 +50,90 @@ public class PlayerSkills : MonoBehaviour
     private void HandleComboMade(Vector3 position)
     {
         ActivateBoomMastery(position);
+        ActivateVerticalBoom(position);
     }
 
     public void ActivateBoomMastery(Vector3 position)
     {
-        if (CombinationManager.Instance.catCount % 8 == 0)
+        BoomMastery supernovaBoomSkill = (BoomMastery)learnedSkills.Find(skill => skill is BoomMastery);
+        if (supernovaBoomSkill != null)
         {
-            Debug.Log("Kaboom now at " + position);
-
-            // Define the blast radius
-            supernovaBlastRadius = 20.0f;
-
-            // Get all colliders within the blast radius
-            Collider[] colliders = Physics.OverlapSphere(position, supernovaBlastRadius);
-
-            // Iterate over all colliders and apply the effect
-            foreach (Collider collider in colliders)
+            float mixCount = supernovaBoomSkill.mixCount;
+            if (CombinationManager.Instance.catCount % mixCount == 0)
             {
-                // Check if the collider has a Rigidbody component
-                Rigidbody rb = collider.GetComponent<Rigidbody>();
-                if (rb != null)
-                {
-                    // Apply an explosion force
-                    float explosionForce = 4000.0f;
-                    rb.AddExplosionForce(explosionForce, position, supernovaBlastRadius);
-                }
-                ParticleManager.Instance.SpawnParticle("Blast", position);
-                CombinationManager.Instance.TriggerTemporaryTimeScaleChange();
-                //
-            }
+                Debug.Log("Kaboom now at " + position);
 
-            // Optionally, you can also instantiate a visual effect for the explosion
-            // Example: Instantiate(explosionEffectPrefab, position, Quaternion.identity);
+                // Define the blast radius
+                supernovaBlastRadius = 12.0f;
+
+                // Get all colliders within the blast radius
+                Collider[] colliders = Physics.OverlapSphere(position, supernovaBlastRadius);
+
+                // Iterate over all colliders and apply the effect
+                foreach (Collider collider in colliders)
+                {
+                    // Check if the collider has a Rigidbody component
+                    Rigidbody rb = collider.GetComponent<Rigidbody>();
+                    if (rb != null)
+                    {
+                        // Apply an explosion force
+                        float explosionForce = 2500.0f;
+                        rb.AddExplosionForce(explosionForce, position, supernovaBlastRadius);
+                    }
+                    ParticleManager.Instance.SpawnParticle("Blast", position);
+                    CombinationManager.Instance.TriggerTemporaryTimeScaleChange(2f);
+                }
+
+                // Optionally, you can also instantiate a visual effect for the explosion
+                // Example: Instantiate(explosionEffectPrefab, position, Quaternion.identity);
+            }
+        }
+    }
+
+
+    public void ActivateVerticalBoom(Vector3 position)
+    {
+        VerticalBoom verticalBoomSkill = (VerticalBoom)learnedSkills.Find(skill => skill is VerticalBoom);
+        if (verticalBoomSkill != null)
+        {
+            float mixCount = verticalBoomSkill.mixCount;
+            if (CombinationManager.Instance.catCount % mixCount == 0)
+            {
+                Debug.Log("Vertical Boom triggered at " + position);
+
+                // Calculate the raycast range
+                float raycastDistance = Mathf.Infinity;
+
+                // Define a small offset to cast multiple rays for the vertical width
+                float halfWidth = verticalBlastWidth / 2;
+
+                // Loop to cast rays across the vertical width
+                for (float offset = -halfWidth; offset <= halfWidth; offset += 0.1f) // Adjust step size for finer or coarser raycasting
+                {
+                    // Calculate the new raycast start position
+                    Vector3 raycastStartPos = new Vector3(position.x + offset, position.y, position.z);
+
+                    // Perform raycast downwards
+                    RaycastHit[] hitsDown = Physics.RaycastAll(raycastStartPos, Vector3.down, raycastDistance, LayerMask.GetMask("GatoLayer"));
+                    foreach (RaycastHit hit in hitsDown)
+                    {
+                        Transform rootParent = hit.collider.transform.root;
+                        Destroy(rootParent.gameObject);
+                    }
+
+                    // Perform raycast upwards
+                    RaycastHit[] hitsUp = Physics.RaycastAll(raycastStartPos, Vector3.up, raycastDistance, LayerMask.GetMask("GatoLayer"));
+                    foreach (RaycastHit hit in hitsUp)
+                    {
+                        Transform rootParent = hit.collider.transform.root;
+                        Destroy(rootParent.gameObject);
+                    }
+                }
+
+                CombinationManager.Instance.TriggerTemporaryTimeScaleChange(1.6f);
+                Vector3 newLightningPosition = position - new Vector3(0, 4f, 0);
+                ParticleManager.Instance.SpawnParticle("Lightning", newLightningPosition);
+            }
         }
     }
 

@@ -19,8 +19,8 @@ public class ObjectSpawnerController : MonoBehaviour
     [SerializeField] private float slowMotionTimeScale = 0.8f;
     [SerializeField] private float transitionDuration = 1f; // Duration for the smooth transition
 
-    [SerializeField] private float maxSlowMotionDuration = 5f; // Maximum duration for slow motion
-    [SerializeField] private float slowMotionRechargeTime = 2f; // Recharge time in seconds
+    [SerializeField] private float maxSlowMotionDuration = 3f; // Maximum duration for slow motion
+    [SerializeField] private float slowMotionRechargeTime = 0.5f; // Recharge time in seconds
     private float currentSlowMotionTime;
     private bool isRecharging = false;
     private bool isSlowMotionActive = false;

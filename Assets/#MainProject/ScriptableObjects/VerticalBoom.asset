@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c333bdcadefdac4ca463d0573b10008, type: 3}
-  m_Name: BoomMastery
+  m_Script: {fileID: 11500000, guid: 7765704f63da4a841b589b17bd183acd, type: 3}
+  m_Name: VerticalBoom
   m_EditorClassIdentifier: 
-  skillName: Boom Mastery
-  description: Boom Boom Boom
+  skillName: VerticalBoom
+  description: 
   activationSkill: 0
   skillLevel: 1
   skillChance: 0
-  mixCount: 12
+  mixCount: 20

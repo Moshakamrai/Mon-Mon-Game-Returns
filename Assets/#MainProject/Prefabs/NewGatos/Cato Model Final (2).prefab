@@ -80,7 +80,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.0011
+  m_Radius: 0.001
   m_Center: {x: 0.0003, y: 0.0008, z: 0}
 --- !u!1 &1364801440234519342
 GameObject:
@@ -380,7 +380,7 @@ Transform:
   m_GameObject: {fileID: 2700245730860880644}
   serializedVersion: 2
   m_LocalRotation: {x: 0.00000011289337, y: -1.4220628e-14, z: -0.7071068, w: 0.7071067}
-  m_LocalPosition: {x: 0.0012000002, y: 0, z: -0.00010000005}
+  m_LocalPosition: {x: 0.001171, y: -0, z: -0.0001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -515,7 +515,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.001
+  m_Radius: 0.00086
   m_Center: {x: 0, y: 0.0001, z: 0}
 --- !u!1 &3355376006438198241
 GameObject:
@@ -543,9 +543,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3355376006438198241}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0.7071068, w: 0}
+  m_LocalRotation: {x: -0.7091542, y: -0, z: -0, w: 0.70505345}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.785714, y: 1.7857144, z: 1.7857144}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3355376006437965581}
@@ -553,7 +553,7 @@ Transform:
   - {fileID: 3355376006437987309}
   - {fileID: 3350748538745995515}
   m_Father: {fileID: 7990873975698430344}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90.332, y: 0, z: 0}
 --- !u!198 &3355376006422768297
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -24852,7 +24852,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.0011
+  m_Radius: 0.001
   m_Center: {x: -0.0005, y: 0.0008, z: 0}
 --- !u!1 &4588670659758285572
 GameObject:
@@ -25027,7 +25027,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.0011
+  m_Radius: 0.001
   m_Center: {x: 0, y: 0.0008, z: 0}
 --- !u!1 &5869679263432888617
 GameObject:
@@ -25140,7 +25140,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.0011
+  m_Radius: 0.001
   m_Center: {x: 0, y: 0.0008, z: 0}
 --- !u!1 &6647931002638529402
 GameObject:
@@ -25391,7 +25391,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.0011
+  m_Radius: 0.001
   m_Center: {x: 0, y: 0.0005, z: 0}
 --- !u!1 &8391873275308720935
 GameObject:
@@ -25556,7 +25556,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.0011
+  m_Radius: 0.001
   m_Center: {x: 0, y: 0.00075, z: 0}
 --- !u!1 &8728340640238263542
 GameObject:
@@ -25676,10 +25676,10 @@ SpringJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 1.0044978e-10, y: -0.0012, z: 0.00010000024}
+  m_ConnectedAnchor: {x: 1.0044979e-10, y: -0.0011709998, z: 0.00010000019}
   serializedVersion: 2
   m_Spring: 70
-  m_Damper: 0.2
+  m_Damper: 0.5
   m_MinDistance: 0
   m_MaxDistance: 0
   m_Tolerance: 0.025
@@ -25703,7 +25703,7 @@ SpringJoint:
   m_ConnectedAnchor: {x: -7.748606e-11, y: -0.0013000001, z: 0}
   serializedVersion: 2
   m_Spring: 70
-  m_Damper: 0.2
+  m_Damper: 0.5
   m_MinDistance: 0
   m_MaxDistance: 0
   m_Tolerance: 0.025
@@ -25727,7 +25727,7 @@ SpringJoint:
   m_ConnectedAnchor: {x: -1.1553736e-10, y: -0.002456066, z: 0.0000353551}
   serializedVersion: 2
   m_Spring: 70
-  m_Damper: 0.2
+  m_Damper: 0.5
   m_MinDistance: 0
   m_MaxDistance: 0
   m_Tolerance: 0.025
@@ -25751,7 +25751,7 @@ SpringJoint:
   m_ConnectedAnchor: {x: 0.000106065316, y: -0.0023853553, z: -2.3283064e-10}
   serializedVersion: 2
   m_Spring: 70
-  m_Damper: 0.2
+  m_Damper: 0.5
   m_MinDistance: 0
   m_MaxDistance: 0
   m_Tolerance: 0.025
@@ -25775,7 +25775,7 @@ SpringJoint:
   m_ConnectedAnchor: {x: 0.00010000021, y: -0.0011999998, z: 0}
   serializedVersion: 2
   m_Spring: 70
-  m_Damper: 0.2
+  m_Damper: 0.5
   m_MinDistance: 0
   m_MaxDistance: 0
   m_Tolerance: 0.025
@@ -25799,7 +25799,7 @@ SpringJoint:
   m_ConnectedAnchor: {x: 0, y: -0.0010999999, z: 1.1641532e-10}
   serializedVersion: 2
   m_Spring: 70
-  m_Damper: 0.2
+  m_Damper: 0.5
   m_MinDistance: 0
   m_MaxDistance: 0
   m_Tolerance: 0.025
@@ -25823,7 +25823,7 @@ SpringJoint:
   m_ConnectedAnchor: {x: -1.1807043e-10, y: -0.0023146444, z: 0.0001060677}
   serializedVersion: 2
   m_Spring: 70
-  m_Damper: 0.2
+  m_Damper: 0.5
   m_MinDistance: 0
   m_MaxDistance: 0
   m_Tolerance: 0.025
@@ -25847,7 +25847,7 @@ SpringJoint:
   m_ConnectedAnchor: {x: 0.000035354868, y: -0.002243934, z: 2.3283064e-10}
   serializedVersion: 2
   m_Spring: 70
-  m_Damper: 0.2
+  m_Damper: 0.5
   m_MinDistance: 0
   m_MaxDistance: 0
   m_Tolerance: 0.025
@@ -25871,7 +25871,7 @@ SpringJoint:
   m_ConnectedAnchor: {x: 1.6213095e-10, y: -0.0024, z: 0.00010000005}
   serializedVersion: 2
   m_Spring: 70
-  m_Damper: 0.2
+  m_Damper: 0.5
   m_MinDistance: 0
   m_MaxDistance: 0
   m_Tolerance: 0.025
@@ -25895,7 +25895,7 @@ SpringJoint:
   m_ConnectedAnchor: {x: 0.000099999976, y: -0.0023000003, z: -7.2759576e-11}
   serializedVersion: 2
   m_Spring: 70
-  m_Damper: 0.2
+  m_Damper: 0.5
   m_MinDistance: 0
   m_MaxDistance: 0
   m_Tolerance: 0.025
@@ -25931,7 +25931,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!114 &2372118441159262509
 MonoBehaviour:
   m_ObjectHideFlags: 0

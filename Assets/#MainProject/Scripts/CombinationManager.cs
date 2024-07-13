@@ -27,7 +27,7 @@ public class CombinationManager : MonoBehaviour
         CatHead head1 = cat1.GetComponent<CatHead>();
         CatHead head2 = cat2.GetComponent<CatHead>();
 
-        if (head1 != null && head2 != null && head1.catType == head2.catType && head1.catType < CatType.Cat7 && catCount % 2 == 0)
+        if (head1 != null && head2 != null && head1.catType == head2.catType && head1.catType <= CatType.Cat9 && catCount % 2 == 0)
         {
             CatType newType = head1.catType + 1;
             GameObject newCat = Instantiate(catPrefabs[(int)newType], cat1.transform.position, Quaternion.Euler(0, 180, 0));
@@ -45,9 +45,9 @@ public class CombinationManager : MonoBehaviour
     }
 
     // Function to change time scale to 0.5 for 2 seconds and then back to 1.4
-    public void TriggerTemporaryTimeScaleChange()
+    public void TriggerTemporaryTimeScaleChange(float duration)
     {
-        StartCoroutine(TemporaryTimeScaleChange(0.5f, 2f, 1.4f));
+        StartCoroutine(TemporaryTimeScaleChange(0.5f, duration, 1.4f));
     }
 
     private IEnumerator TemporaryTimeScaleChange(float targetTimeScale, float duration, float finalTimeScale)
@@ -69,7 +69,7 @@ public enum CatType
     Cat5,
     Cat6,
     Cat7,
-    //Cat8,
-    //Cat9,
+    Cat8,
+    Cat9,
     //Cat10
 }

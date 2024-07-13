@@ -206,7 +206,7 @@ Material:
     - _SelfShadingSize: 0
     - _ShadowColorLightAtten: 1
     - _SingleIndirectColor: 0
-    - _Smoothness: 0.25
+    - _Smoothness: 0.493
     - _SmoothnessTextureChannel: 0
     - _SpecularEnabled: 0
     - _SpecularHighlights: 1
