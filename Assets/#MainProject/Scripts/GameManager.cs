@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Application.targetFrameRate = 1000;
       // Time.timeScale = 1.6f;
     }
     private void Update()
