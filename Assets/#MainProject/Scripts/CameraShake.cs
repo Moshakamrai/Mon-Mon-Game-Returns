@@ -45,6 +45,13 @@ public class CameraShake : MonoBehaviour
         timer = shakeTime;
     }
 
+    public void ShakeCamera2()
+    {
+        CinemachineBasicMultiChannelPerlin cbmcp = mCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        cbmcp.m_AmplitudeGain = shakeIntensity + 0.4f;
+        timer = shakeTime + 0.2f;
+    }
+
     void StopShake()
     {
         CinemachineBasicMultiChannelPerlin cbmcp = mCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();

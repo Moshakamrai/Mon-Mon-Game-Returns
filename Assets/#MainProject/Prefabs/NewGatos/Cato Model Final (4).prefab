@@ -25196,7 +25196,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!114 &4501920003198797606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25895,7 +25895,7 @@ GameObject:
   - component: {fileID: 4772742008791475695}
   m_Layer: 0
   m_Name: Cato Model Final (4)
-  m_TagString: Untagged
+  m_TagString: Gato
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25910,7 +25910,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 4, z: 4}
+  m_LocalScale: {x: 3, y: 3.5, z: 3.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7301716158255921372}

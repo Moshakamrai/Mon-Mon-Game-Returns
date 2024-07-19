@@ -24,7 +24,11 @@ public class SkillEvents : MonoBehaviour
 
     public void ComboMade(Vector3 position)
     {
-        Debug.Log("ComboMade");
+       // Debug.Log("ComboMade");
+        UIManager.Instance.ShowFloatingPoints(position, 1000f);
         OnComboMade?.Invoke(position);
+        
     }
+
+
 }

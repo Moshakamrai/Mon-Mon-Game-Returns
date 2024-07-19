@@ -8,9 +8,15 @@ public class PlayerSkills : MonoBehaviour
     public float nightVisionBlastRadius = 1f;
     public float familyBlastPower = 1f;
     public float levelAnnihilateBlastPower = 1f;
-    public float verticalBlastWidth = 5f;
+    public float BlastWidthVerticle = 5f;
+    public float BlastWidthHorizontal = 5f;
     public float verticalBlastDepth = 10f; // Adjust as needed
+    public float horizontalBlastDepth = 10f;
     public List<Skill> learnedSkills = new List<Skill>();
+
+    public SkillManager skillManageScript;
+
+   // public string skillName;
 
     public void IncreaseSupernovaBoomRadius(float amount)
     {
@@ -34,7 +40,7 @@ public class PlayerSkills : MonoBehaviour
 
     public void IncreaseVerticalBlastPower(float amount)
     {
-        verticalBlastWidth += amount;
+        BlastWidthVerticle += amount;
     }
 
     private void OnEnable()
@@ -51,6 +57,7 @@ public class PlayerSkills : MonoBehaviour
     {
         ActivateBoomMastery(position);
         ActivateVerticalBoom(position);
+        ActivateHorizontalBoom(position);
     }
 
     public void ActivateBoomMastery(Vector3 position)
@@ -58,10 +65,11 @@ public class PlayerSkills : MonoBehaviour
         BoomMastery supernovaBoomSkill = (BoomMastery)learnedSkills.Find(skill => skill is BoomMastery);
         if (supernovaBoomSkill != null)
         {
+            CameraShake.Instance.ShakeCamera2();
             float mixCount = supernovaBoomSkill.mixCount;
             if (CombinationManager.Instance.catCount % mixCount == 0)
             {
-                Debug.Log("Kaboom now at " + position);
+                //Debug.Log("Kaboom now at " + position);
 
                 // Define the blast radius
                 supernovaBlastRadius = 12.0f;
@@ -80,6 +88,12 @@ public class PlayerSkills : MonoBehaviour
                         float explosionForce = 2500.0f;
                         rb.AddExplosionForce(explosionForce, position, supernovaBlastRadius);
                     }
+                    CatHead otherCatHead = collider.gameObject.GetComponent<CatHead>();
+                    if (otherCatHead != null && otherCatHead.catType == CatType.OddCat)
+                    {
+                        UIManager.Instance.ShowFloatingPoints(collider.gameObject.transform.position, 1000f);
+                        collider.transform.root.gameObject.SetActive(false);
+                    }
                     ParticleManager.Instance.SpawnParticle("Blast", position);
                     CombinationManager.Instance.TriggerTemporaryTimeScaleChange(2f);
                 }
@@ -96,16 +110,17 @@ public class PlayerSkills : MonoBehaviour
         VerticalBoom verticalBoomSkill = (VerticalBoom)learnedSkills.Find(skill => skill is VerticalBoom);
         if (verticalBoomSkill != null)
         {
+            CameraShake.Instance.ShakeCamera2();
             float mixCount = verticalBoomSkill.mixCount;
             if (CombinationManager.Instance.catCount % mixCount == 0)
             {
-                Debug.Log("Vertical Boom triggered at " + position);
+                //Debug.Log("Vertical Boom triggered at " + position);
 
                 // Calculate the raycast range
                 float raycastDistance = Mathf.Infinity;
 
                 // Define a small offset to cast multiple rays for the vertical width
-                float halfWidth = verticalBlastWidth / 2;
+                float halfWidth = BlastWidthVerticle / 2;
 
                 // Loop to cast rays across the vertical width
                 for (float offset = -halfWidth; offset <= halfWidth; offset += 0.1f) // Adjust step size for finer or coarser raycasting
@@ -118,24 +133,95 @@ public class PlayerSkills : MonoBehaviour
                     foreach (RaycastHit hit in hitsDown)
                     {
                         Transform rootParent = hit.collider.transform.root;
-                        Destroy(rootParent.gameObject);
+                        
+                        if (rootParent.CompareTag("Gato"))
+                        {
+                            UIManager.Instance.ShowFloatingPoints(rootParent.gameObject.transform.position, 1000f);
+                            Destroy(rootParent.gameObject);
+                        }
                     }
 
                     // Perform raycast upwards
                     RaycastHit[] hitsUp = Physics.RaycastAll(raycastStartPos, Vector3.up, raycastDistance, LayerMask.GetMask("GatoLayer"));
                     foreach (RaycastHit hit in hitsUp)
                     {
+                        
                         Transform rootParent = hit.collider.transform.root;
-                        Destroy(rootParent.gameObject);
+                       
+                        if (rootParent.CompareTag("Gato"))
+                        {
+                            UIManager.Instance.ShowFloatingPoints(rootParent.gameObject.transform.position, 1000f);
+                            Destroy(rootParent.gameObject);
+                        }
+                                      
                     }
                 }
 
-                CombinationManager.Instance.TriggerTemporaryTimeScaleChange(1.6f);
+                CombinationManager.Instance.TriggerTemporaryTimeScaleChange(1.8f);
                 Vector3 newLightningPosition = position - new Vector3(0, 4f, 0);
                 ParticleManager.Instance.SpawnParticle("Lightning", newLightningPosition);
             }
         }
     }
+
+    public void ActivateHorizontalBoom(Vector3 position)
+    {
+        HorizontalBoom horizontalBoomSkill = (HorizontalBoom)learnedSkills.Find(skill => skill is HorizontalBoom);
+        if (horizontalBoomSkill != null)
+        {
+            CameraShake.Instance.ShakeCamera2();
+            float mixCount = horizontalBoomSkill.mixCount;
+            if (CombinationManager.Instance.catCount % mixCount == 0)
+            {
+               // Debug.Log("Horizontal Boom triggered at " + position);
+
+                // Calculate the raycast range
+                float raycastDistance = Mathf.Infinity;
+
+                // Define a small offset to cast multiple rays for the horizontal width
+                float halfDepth = horizontalBlastDepth * BlastWidthHorizontal; // Adjust for horizontal depth if needed
+
+                // Loop to cast rays across the horizontal depth
+                for (float offset = -halfDepth; offset <= halfDepth; offset += 0.1f) // Adjust step size for finer or coarser raycasting
+                {
+                    // Calculate the new raycast start position
+                    Vector3 raycastStartPos = new Vector3(position.x, position.y - 1f, position.z + offset);
+
+                    // Perform raycast to the left
+                    RaycastHit[] hitsLeft = Physics.RaycastAll(raycastStartPos, Vector3.left, raycastDistance * 10, LayerMask.GetMask("GatoLayer"));
+                    foreach (RaycastHit hit in hitsLeft)
+                    {
+                        Transform rootParent = hit.collider.transform.root;
+                        
+                        if (rootParent.CompareTag("Gato"))
+                        {
+                            UIManager.Instance.ShowFloatingPoints(rootParent.gameObject.transform.position, 1000f);
+                            Destroy(rootParent.gameObject);
+                        }
+                    }
+
+                    // Perform raycast to the right
+                    RaycastHit[] hitsRight = Physics.RaycastAll(raycastStartPos, Vector3.right, raycastDistance * 10, LayerMask.GetMask("GatoLayer"));
+                    foreach (RaycastHit hit in hitsRight)
+                    {
+                        Transform rootParent = hit.collider.transform.root;
+                        
+                        if (rootParent.CompareTag("Gato"))
+                        {
+                            UIManager.Instance.ShowFloatingPoints(rootParent.gameObject.transform.position, 1000f);
+                            Destroy(rootParent.gameObject);
+                        }
+                    }
+                }
+
+                CombinationManager.Instance.TriggerTemporaryTimeScaleChange(1.8f);
+                Vector3 newExplosionPosition = position - new Vector3(0f, 1f, 0);
+                ParticleManager.Instance.SpawnParticle("Slam", newExplosionPosition);
+            }
+        }
+    }
+
+
 
 
     public void ActivateShrinkChance(float chance)
@@ -200,5 +286,14 @@ public class PlayerSkills : MonoBehaviour
             learnedSkills.Add(skill);
             skill.ApplySkill(gameObject, Vector3.zero);
         }
+    }
+
+    public void AddSkills(string skillName)
+    {
+        if (skillName != null)
+        {
+            skillManageScript.ChooseSkill(skillName, gameObject);
+        }
+        
     }
 }

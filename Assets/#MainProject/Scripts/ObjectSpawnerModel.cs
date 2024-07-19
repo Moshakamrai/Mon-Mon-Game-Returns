@@ -37,6 +37,6 @@ public class ObjectSpawnerModel
     {
         
         nextObjectIndex = Random.Range(0, objectsToSpawn.Length);
-        UIManager.Instance.SetNextBlobUI(nextObjectIndex);
+        //UIManager.Instance.SetNextBlobUI(nextObjectIndex);
     }
 }

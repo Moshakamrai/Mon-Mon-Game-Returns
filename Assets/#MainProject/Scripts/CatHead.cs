@@ -9,11 +9,11 @@ public class CatHead : MonoBehaviour
     private bool isDragging = false;
     private Rigidbody rb;
     private Collider catCollider;
-    [SerializeField] private bool istouched;
+    public bool istouched;
 
     private void Start()
     {
-        CameraShake.Instance.ShakeCamera();
+        
         rb = GetComponent<Rigidbody>();
         catCollider = GetComponent<MeshCollider>();
     }
@@ -87,6 +87,7 @@ public class CatHead : MonoBehaviour
             istouched = true;
             splashSound = true;
             AudioManager.Instance.PlaySFX2("DropSound");
+            UIManager.Instance.ShowFloatingPointsSmall(collision.gameObject.transform.position, 10f);
         }
     }
 

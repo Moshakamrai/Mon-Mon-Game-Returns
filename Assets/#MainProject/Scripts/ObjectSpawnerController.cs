@@ -13,7 +13,7 @@ public class ObjectSpawnerController : MonoBehaviour
     public int catNumber;
     public float speed = 1f;
     public float spawnInterval = 3f; // Initial interval between spawns in seconds
-    public float minSpawnInterval = 1.5f; // Minimum interval between spawns
+    public float minSpawnInterval = 1.85f; // Minimum interval between spawns
 
     [SerializeField] private float normalTimeScale = 1.5f;
     [SerializeField] private float slowMotionTimeScale = 0.8f;
@@ -28,6 +28,7 @@ public class ObjectSpawnerController : MonoBehaviour
     private int objectsSpawnedCount = 0;
     private const int intervalReductionCount = 10; // Number of objects spawned before reducing spawn interval
     [SerializeField] private float intervalReductionAmount = 0.2f; // Amount to reduce spawn interval
+    [SerializeField] private bool shouldSpawn;
 
     void Start()
     {
@@ -35,7 +36,12 @@ public class ObjectSpawnerController : MonoBehaviour
         Time.timeScale = normalTimeScale; // Set the initial time scale
         currentSlowMotionTime = maxSlowMotionDuration;
         UIManager.Instance.SetMaxSlowMotionBar(maxSlowMotionDuration);
-        StartCoroutine(SpawnObjectPeriodically());
+        shouldSpawn = true;
+    }
+
+    public void GameController(bool currentSpawnStatus)
+    {
+        StartCoroutine(SpawnObjectPeriodically(currentSpawnStatus));
     }
 
     void Update()
@@ -115,9 +121,9 @@ public class ObjectSpawnerController : MonoBehaviour
     }
 
     // Coroutine for periodic spawning
-    private IEnumerator SpawnObjectPeriodically()
+    private IEnumerator SpawnObjectPeriodically(bool spawnStatus)
     {
-        while (true)
+        while (spawnStatus)
         {
             SpawnObject();
             yield return new WaitForSeconds(spawnInterval);
@@ -126,7 +132,7 @@ public class ObjectSpawnerController : MonoBehaviour
 
     void SpawnObject()
     {
-        if (referenceObject != null)
+        if (referenceObject != null && shouldSpawn)
         {
             Vector3 spawnPosition = referenceObject.position;
             spawnPosition.y -= 2f; // Adjust the Y position by 2 units
@@ -145,6 +151,11 @@ public class ObjectSpawnerController : MonoBehaviour
         {
             Debug.LogWarning("Reference object not set.");
         }
+    }
+
+    public void StopSpawn()
+    {
+        shouldSpawn = false;
     }
 
     public GameObject GetNextObjectToSpawn()

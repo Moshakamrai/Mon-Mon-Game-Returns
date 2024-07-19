@@ -8,6 +8,7 @@ TagManager:
   - Boundary
   - Gato
   - Ground
+  - OddGato
   layers:
   - Default
   - TransparentFX

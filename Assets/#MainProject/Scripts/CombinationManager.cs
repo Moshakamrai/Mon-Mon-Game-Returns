@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class CombinationManager : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class CombinationManager : MonoBehaviour
 
     public GameObject[] catPrefabs; // Array of cat prefabs in hierarchical order
     public int catCount;
+
+    public ObjectSpawnerController objectSpawnerScript;
 
     private void Awake()
     {
@@ -27,7 +30,7 @@ public class CombinationManager : MonoBehaviour
         CatHead head1 = cat1.GetComponent<CatHead>();
         CatHead head2 = cat2.GetComponent<CatHead>();
 
-        if (head1 != null && head2 != null && head1.catType == head2.catType && head1.catType <= CatType.Cat9 && catCount % 2 == 0)
+        if (head1 != null && head2 != null && head1.catType == head2.catType && head1.catType < CatType.OddCat && catCount % 2 == 0)
         {
             CatType newType = head1.catType + 1;
             GameObject newCat = Instantiate(catPrefabs[(int)newType], cat1.transform.position, Quaternion.Euler(0, 180, 0));
@@ -47,9 +50,9 @@ public class CombinationManager : MonoBehaviour
     // Function to change time scale to 0.5 for 2 seconds and then back to 1.4
     public void TriggerTemporaryTimeScaleChange(float duration)
     {
-        StartCoroutine(TemporaryTimeScaleChange(0.5f, duration, 1.4f));
+        StartCoroutine(TemporaryTimeScaleChange(0.3f, duration, 1.5f));
     }
-
+    
     private IEnumerator TemporaryTimeScaleChange(float targetTimeScale, float duration, float finalTimeScale)
     {
         Time.timeScale = targetTimeScale;
@@ -57,6 +60,23 @@ public class CombinationManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(duration);
         Time.timeScale = finalTimeScale;
         Time.fixedDeltaTime = Time.timeScale * 0.02f; // Adjust fixedDeltaTime according to time scale
+    }
+
+    public void customTimeScale(float timeScaleAmmount)
+    {
+        Debug.Log("Time should slow");
+        Time.timeScale = timeScaleAmmount;
+        Time.fixedDeltaTime = Time.timeScale * 0.02f;
+    }
+
+    public void ControlGame(bool gameBool)
+    {
+        objectSpawnerScript.GameController(gameBool);
+    }
+
+    public void PauseGame()
+    {
+        objectSpawnerScript.StopSpawn();
     }
 }
 
@@ -71,5 +91,5 @@ public enum CatType
     Cat7,
     Cat8,
     Cat9,
-    //Cat10
+    OddCat
 }

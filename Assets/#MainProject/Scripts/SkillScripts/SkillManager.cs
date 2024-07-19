@@ -3,19 +3,38 @@ using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
-    public List<Skill> availableSkills;
+    public List<SkillEntry> skillEntries;
 
-    public void ChooseSkill(int skillIndex, GameObject player)
+    private Dictionary<string, Skill> availableSkills;
+
+    private void Awake()
     {
-        if (skillIndex >= 0 && skillIndex < availableSkills.Count)
+        // Convert the list to a dictionary
+        availableSkills = new Dictionary<string, Skill>();
+        foreach (var entry in skillEntries)
         {
-            Skill chosenSkill = availableSkills[skillIndex];
+            availableSkills[entry.skillName] = entry.skill;
+        }
+    }
+
+    public void ChooseSkill(string skillName, GameObject player)
+    {
+        if (availableSkills.TryGetValue(skillName, out Skill chosenSkill))
+        {
             player.GetComponent<PlayerSkills>().AddSkillPermanently(chosenSkill);
             Debug.Log("Skill " + chosenSkill.name + " chosen and applied.");
         }
         else
         {
-            Debug.Log("Invalid skill index");
+            Debug.LogError("Skill " + skillName + " not found in available skills.");
         }
     }
+}
+
+
+[System.Serializable]
+public class SkillEntry
+{
+    public string skillName;
+    public Skill skill;
 }

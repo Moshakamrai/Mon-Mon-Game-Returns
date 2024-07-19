@@ -372,7 +372,7 @@ GameObject:
   - component: {fileID: 3057284045346585069}
   m_Layer: 0
   m_Name: Cato Model Final (3)
-  m_TagString: Untagged
+  m_TagString: Gato
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -387,7 +387,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3.7, z: 3.7}
+  m_LocalScale: {x: 3, y: 3.2, z: 3.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1222832730972299488}
@@ -685,7 +685,7 @@ GameObject:
   - component: {fileID: 7627389414898166123}
   m_Layer: 0
   m_Name: Cat
-  m_TagString: Untagged
+  m_TagString: Gato
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -764,7 +764,7 @@ SkinnedMeshRenderer:
   - {fileID: 3792529689670779034}
   - {fileID: 2415987338673384669}
   m_BlendShapeWeights: []
-  m_RootBone: {fileID: 2415987338673384669}
+  m_RootBone: {fileID: 6715279777406937826}
   m_AABB:
     m_Center: {x: 3.4924597e-10, y: -0.0023433473, z: 0.000101753045}
     m_Extent: {x: 0.0022757114, y: 0.0051884716, z: 0.0052128616}
@@ -25818,7 +25818,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!114 &8096173571508749188
 MonoBehaviour:
   m_ObjectHideFlags: 0

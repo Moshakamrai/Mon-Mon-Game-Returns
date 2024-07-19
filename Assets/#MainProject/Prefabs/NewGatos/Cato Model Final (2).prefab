@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 8781113241867182796}
   m_Layer: 0
   m_Name: Cat
-  m_TagString: Untagged
+  m_TagString: Gato
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25185,7 +25185,7 @@ GameObject:
   - component: {fileID: 7101161372653388749}
   m_Layer: 0
   m_Name: Cato Model Final (2)
-  m_TagString: Untagged
+  m_TagString: Gato
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25200,7 +25200,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3.4, z: 3.4}
+  m_LocalScale: {x: 3, y: 2.9, z: 2.9}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4542545800562479161}

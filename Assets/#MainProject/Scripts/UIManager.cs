@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,14 @@ public class UIManager : MonoBehaviour
 
     private Coroutine slowMotionCoroutine;
     private float smoothSpeed = 0.3f; // Speed at which the slider value changes
+
+    [SerializeField] private DynamicTextData floatingFont;
+
+    [SerializeField] private TextMeshProUGUI pointText;
+
+    [SerializeField] private float totalPoints;
+
+    [SerializeField] private GameObject gameOverPanel;
 
     void Awake()
     {
@@ -33,10 +42,10 @@ public class UIManager : MonoBehaviour
         slowMotionBar.value = 1;
     }
 
-    public void SetNextBlobUI(int blobIndex)
-    {
-        blobUI.sprite = blobSprites[blobIndex];
-    }
+    //public void SetNextBlobUI(int blobIndex)
+    //{
+    //    blobUI.sprite = blobSprites[blobIndex];
+    //}
 
     //public void UpdateSlowMotionBar(float value)
     //{
@@ -88,5 +97,34 @@ public class UIManager : MonoBehaviour
         }
 
         slowMotionBar.value = 1;
+    }
+
+    public void ShowFloatingPoints(Vector3 position, float mixPoints)
+    {
+        float x = Random.Range(0.1f, 2);
+        float y = Random.Range(2f, 4);
+        AddPoints(mixPoints);
+        position += new Vector3(x, y, 0);
+        DynamicTextManager.CreateText(position, mixPoints.ToString(), floatingFont);
+    }
+
+    public void ShowFloatingPointsSmall(Vector3 position, float mixPoints)
+    {
+        float x = Random.Range(0.1f, 2);
+        float y = Random.Range(2f, 4);
+        AddPoints(mixPoints);
+        position += new Vector3(x, y, 0);
+        DynamicTextManager.CreateTextNew(position, mixPoints.ToString(), floatingFont);
+    }
+
+    public void AddPoints(float pointsScored)
+    {
+        totalPoints += pointsScored;
+        pointText.text = totalPoints.ToString();
+    }
+
+    public void GameOverPanelActive()
+    {
+        gameOverPanel.SetActive(true);
     }
 }
