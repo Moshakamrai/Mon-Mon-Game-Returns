@@ -55,10 +55,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   temperature:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   tint:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
 --- !u!114 &3165363951798644589
 MonoBehaviour:

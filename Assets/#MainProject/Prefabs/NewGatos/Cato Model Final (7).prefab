@@ -21018,7 +21018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b185496b24346e4b86f1198d4a60922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  catType: 5
+  catType: 7
   splashSound: 0
   speed: 1
   istouched: 0
