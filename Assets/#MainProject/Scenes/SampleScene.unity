@@ -506,7 +506,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3501861957742766786, guid: fb1a5e23c5cd7c14f96543e9ef60b01a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.51
+      value: -4.05
       objectReference: {fileID: 0}
     - target: {fileID: 3501861957742766786, guid: fb1a5e23c5cd7c14f96543e9ef60b01a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -539,6 +539,10 @@ PrefabInstance:
     - target: {fileID: 4876000796251780537, guid: fb1a5e23c5cd7c14f96543e9ef60b01a, type: 3}
       propertyPath: m_Name
       value: Cato Model Final (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876000796251780537, guid: fb1a5e23c5cd7c14f96543e9ef60b01a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1084,7 +1088,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bab2636a343b5bd45bf3a39a7c90afde, type: 2}
+  - {fileID: 2100000, guid: 7104646f97d4fc7469a1c250d0411b5c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1460,7 +1464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 484833686467862751, guid: 270ddb231a360e543aa00ace7b8d425a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.29
+      value: -7.83
       objectReference: {fileID: 0}
     - target: {fileID: 484833686467862751, guid: 270ddb231a360e543aa00ace7b8d425a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1493,6 +1497,10 @@ PrefabInstance:
     - target: {fileID: 7497497848676107050, guid: 270ddb231a360e543aa00ace7b8d425a, type: 3}
       propertyPath: m_Name
       value: Cato Model Final (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497497848676107050, guid: 270ddb231a360e543aa00ace7b8d425a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1645,6 +1653,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cato Model Final (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 3961731488261091598, guid: 9404680e6b2fc1a4a86d5b53a8acf4df, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6443290527458931849, guid: 9404680e6b2fc1a4a86d5b53a8acf4df, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.165028
@@ -1655,7 +1667,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6443290527458931849, guid: 9404680e6b2fc1a4a86d5b53a8acf4df, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.79
+      value: -11.33
       objectReference: {fileID: 0}
     - target: {fileID: 6443290527458931849, guid: 9404680e6b2fc1a4a86d5b53a8acf4df, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2852,7 +2864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2112542866197613062, guid: b46e91e670c9d3e4a8a07266e6c65f5f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.83
+      value: -11.37
       objectReference: {fileID: 0}
     - target: {fileID: 2112542866197613062, guid: b46e91e670c9d3e4a8a07266e6c65f5f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2885,6 +2897,10 @@ PrefabInstance:
     - target: {fileID: 9212545642462076487, guid: b46e91e670c9d3e4a8a07266e6c65f5f, type: 3}
       propertyPath: m_Name
       value: Cato Model Final (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9212545642462076487, guid: b46e91e670c9d3e4a8a07266e6c65f5f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2938,6 +2954,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cato Model Final (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7130268059412511506, guid: d64817fcf06e05d4eb4fe31bc2ec52c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7990873975698430344, guid: d64817fcf06e05d4eb4fe31bc2ec52c9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.165028
@@ -2948,7 +2968,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7990873975698430344, guid: d64817fcf06e05d4eb4fe31bc2ec52c9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.74
+      value: -8.28
       objectReference: {fileID: 0}
     - target: {fileID: 7990873975698430344, guid: d64817fcf06e05d4eb4fe31bc2ec52c9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3601,7 +3621,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4112479403018105277, guid: 3c7556cb12136c24b95c5fb499f1b72b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.66
+      value: -7.2
       objectReference: {fileID: 0}
     - target: {fileID: 4112479403018105277, guid: 3c7556cb12136c24b95c5fb499f1b72b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3635,6 +3655,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cato Model Final (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 7596935629061669811, guid: 3c7556cb12136c24b95c5fb499f1b72b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3658,7 +3682,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5553482597776415768, guid: cb67d158789b3bc4bac8430b0aab07d8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.66
+      value: -11.2
       objectReference: {fileID: 0}
     - target: {fileID: 5553482597776415768, guid: cb67d158789b3bc4bac8430b0aab07d8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3691,6 +3715,10 @@ PrefabInstance:
     - target: {fileID: 5720694543933036322, guid: cb67d158789b3bc4bac8430b0aab07d8, type: 3}
       propertyPath: m_Name
       value: Cato Model Final (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5720694543933036322, guid: cb67d158789b3bc4bac8430b0aab07d8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6567,6 +6595,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cato Model Final (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1863520803921951246, guid: 0896f85e4fadeab43bafeba26b9ca051, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8095009283420126705, guid: 0896f85e4fadeab43bafeba26b9ca051, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.165028
@@ -6577,7 +6609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8095009283420126705, guid: 0896f85e4fadeab43bafeba26b9ca051, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.27
+      value: -3.81
       objectReference: {fileID: 0}
     - target: {fileID: 8095009283420126705, guid: 0896f85e4fadeab43bafeba26b9ca051, type: 3}
       propertyPath: m_LocalRotation.w
