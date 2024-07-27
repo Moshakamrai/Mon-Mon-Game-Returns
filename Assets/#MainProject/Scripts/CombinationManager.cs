@@ -9,6 +9,8 @@ public class CombinationManager : MonoBehaviour
     public GameObject[] catPrefabs; // Array of cat prefabs in hierarchical order
     public int catCount;
 
+    public GameObject lastMixCato;
+
     public ObjectSpawnerController objectSpawnerScript;
 
     private void Awake()
@@ -36,7 +38,7 @@ public class CombinationManager : MonoBehaviour
             GameObject newCat = Instantiate(catPrefabs[(int)newType], cat1.transform.position, Quaternion.Euler(0, 180, 0));
 
             // Trigger the combo event
-
+            lastMixCato = newCat;
             SkillEvents.Instance.ComboMade(cat1.transform.position);
             return newCat;
         }
@@ -78,6 +80,26 @@ public class CombinationManager : MonoBehaviour
     {
         objectSpawnerScript.StopSpawn();
     }
+
+    public bool ChanceCalculation(float percentageChance)
+    {
+       // Debug.Log("CALCULATE CHANCE");
+        // Ensure percentageChance is between 0 and 100
+        percentageChance = Mathf.Clamp(percentageChance, 0f, 100f);
+
+        // Generate a random number between 0 and 1
+        float randomValue = Random.value;
+
+        // Convert percentageChance to a decimal
+        float decimalChance = percentageChance / 100f;
+
+        // Return true if the random value is less than or equal to the decimal chance
+        return randomValue <= decimalChance;
+        
+        
+    }
+
+
 }
 
 public enum CatType

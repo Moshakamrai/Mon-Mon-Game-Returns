@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 
+
 public class PlayerSkills : MonoBehaviour
 {
     public float supernovaBlastRadius = 15f;
@@ -58,7 +59,16 @@ public class PlayerSkills : MonoBehaviour
         ActivateBoomMastery(position);
         ActivateVerticalBoom(position);
         ActivateHorizontalBoom(position);
+        ActivateTinyPawsensibility(position);
+        ActivateFurNovaBlast(position);
+
+        if (SkillEvents.Instance.comboCounter > 5)
+        {
+            ActivateComboNovaBlast(position);
+        }
     }
+
+
 
     public void ActivateBoomMastery(Vector3 position)
     {
@@ -69,35 +79,8 @@ public class PlayerSkills : MonoBehaviour
             float mixCount = supernovaBoomSkill.mixCount;
             if (CombinationManager.Instance.catCount % mixCount == 0)
             {
-                //Debug.Log("Kaboom now at " + position);
-
-                // Define the blast radius
-                supernovaBlastRadius = 12.0f;
-
-                // Get all colliders within the blast radius
-                Collider[] colliders = Physics.OverlapSphere(position, supernovaBlastRadius);
-
-                // Iterate over all colliders and apply the effect
-                foreach (Collider collider in colliders)
-                {
-                    // Check if the collider has a Rigidbody component
-                    Rigidbody rb = collider.GetComponent<Rigidbody>();
-                    if (rb != null)
-                    {
-                        // Apply an explosion force
-                        float explosionForce = 2500.0f;
-                        rb.AddExplosionForce(explosionForce, position, supernovaBlastRadius);
-                    }
-                    CatHead otherCatHead = collider.gameObject.GetComponent<CatHead>();
-                    if (otherCatHead != null && otherCatHead.catType == CatType.OddCat)
-                    {
-                        UIManager.Instance.ShowFloatingPoints(collider.gameObject.transform.position, 1000f);
-                        collider.transform.root.gameObject.SetActive(false);
-                    }
-                    ParticleManager.Instance.SpawnParticle("Blast", position);
-                    CombinationManager.Instance.TriggerTemporaryTimeScaleChange(2f);
-                }
-
+                
+                BoomMastery(position);
                 // Optionally, you can also instantiate a visual effect for the explosion
                 // Example: Instantiate(explosionEffectPrefab, position, Quaternion.identity);
             }
@@ -221,8 +204,76 @@ public class PlayerSkills : MonoBehaviour
         }
     }
 
+    public void ActivateComboNovaBlast(Vector3 position)
+    {
+        ComboNovaBlast BoomSkill = (ComboNovaBlast)learnedSkills.Find(skill => skill is ComboNovaBlast);
+        if (BoomSkill != null)
+        {
+            BoomMastery(position);  
+        }
+    }
+    public void ActivateTinyPawsensibility(Vector3 position)
+    {
+        ActivateTinyPawsensibility BoomSkill = (ActivateTinyPawsensibility)learnedSkills.Find(skill => skill is ActivateTinyPawsensibility);
+        if (BoomSkill != null)
+        {
+            if (CombinationManager.Instance.ChanceCalculation(20))
+            {
+                GameObject currentCato = CombinationManager.Instance.lastMixCato;
+                currentCato.GetComponentInChildren<CatHead>().CatShrink();
+                ParticleManager.Instance.SpawnParticle("ShrinkEffect", currentCato.transform.position);
+                CombinationManager.Instance.TriggerTemporaryTimeScaleChange(2f);
+            }   
+        }
+        
+    }
 
+    public void ActivateFurNovaBlast(Vector3 position)
+    {
+        FurNovaBlast BoomSkill = (FurNovaBlast)learnedSkills.Find(skill => skill is FurNovaBlast);
+        if (BoomSkill != null) 
+        {
+            if (CombinationManager.Instance.ChanceCalculation(20))
+            {
+                GameObject currentCato = CombinationManager.Instance.lastMixCato;
+                
+                BoomMastery(position);       
+            }
+        }
+         
+    }
 
+    public void BoomMastery(Vector3 position)
+    {
+        //Debug.Log("Kaboom now at " + position);
+
+                // Define the blast radius
+                supernovaBlastRadius = 12.0f;
+
+                // Get all colliders within the blast radius
+                Collider[] colliders = Physics.OverlapSphere(position, supernovaBlastRadius);
+
+                // Iterate over all colliders and apply the effect
+                foreach (Collider collider in colliders)
+                {
+                    // Check if the collider has a Rigidbody component
+                    Rigidbody rb = collider.GetComponent<Rigidbody>();
+                    if (rb != null)
+                    {
+                        // Apply an explosion force
+                        float explosionForce = 2500.0f;
+                        rb.AddExplosionForce(explosionForce, position, supernovaBlastRadius);
+                    }
+                    CatHead otherCatHead = collider.gameObject.GetComponent<CatHead>();
+                    if (otherCatHead != null && otherCatHead.catType == CatType.OddCat)
+                    {
+                        UIManager.Instance.ShowFloatingPoints(collider.gameObject.transform.position, 1000f);
+                        collider.transform.root.gameObject.SetActive(false);
+                    }
+                    ParticleManager.Instance.SpawnParticle("Blast", position);
+                    CombinationManager.Instance.TriggerTemporaryTimeScaleChange(2f);
+                }
+    }
 
     public void ActivateShrinkChance(float chance)
     {
@@ -268,6 +319,8 @@ public class PlayerSkills : MonoBehaviour
     {
         // Logic for smaller blobs after continued combos
     }
+
+    
 
     public void ActivateComboTime(float comboTimeIncrease, float slowMotionTimeDecrease)
     {

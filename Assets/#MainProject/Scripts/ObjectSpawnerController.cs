@@ -17,7 +17,7 @@ public class ObjectSpawnerController : MonoBehaviour
 
     [SerializeField] private float normalTimeScale = 1.5f;
     [SerializeField] private float slowMotionTimeScale = 0.8f;
-    [SerializeField] private float transitionDuration = 1f; // Duration for the smooth transition
+    //[SerializeField] private float transitionDuration = 1f; // Duration for the smooth transition
 
     [SerializeField] private float maxSlowMotionDuration = 3f; // Maximum duration for slow motion
     [SerializeField] private float slowMotionRechargeTime = 0.5f; // Recharge time in seconds
@@ -42,6 +42,7 @@ public class ObjectSpawnerController : MonoBehaviour
     public void GameController(bool currentSpawnStatus)
     {
         StartCoroutine(SpawnObjectPeriodically(currentSpawnStatus));
+        
     }
 
     void Update()

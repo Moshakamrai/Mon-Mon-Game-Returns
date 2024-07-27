@@ -10,4 +10,6 @@ public abstract class Skill : ScriptableObject
     public float mixCount;
 
     public abstract void ApplySkill(GameObject player, Vector3 position);
+
+    //public abstract void ApplySkill(GameObject player, Vector3 position, GameObject object);
 }

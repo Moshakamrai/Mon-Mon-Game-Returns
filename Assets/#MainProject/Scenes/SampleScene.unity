@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 1, g: 1, b: 1, a: 1}
+  m_SubtractiveShadowColor: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 0d61e067af79f674e89502a77a562c6e, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.053528816, g: 0.040888563, b: 0.040172428, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -525,9 +525,7 @@ MonoBehaviour:
   - skillName: Super Nova Blast
     skill: {fileID: 11400000, guid: 01341d758abeb4f4284d50ba9026b030, type: 2}
   - skillName: 
-    skill: {fileID: 0}
-  - skillName: 
-    skill: {fileID: 0}
+    skill: {fileID: 11400000, guid: e453f54e6a2ada4449d7eb77e1436308, type: 2}
   - skillName: 
     skill: {fileID: 0}
   - skillName: 
@@ -800,7 +798,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 78.51
+    FieldOfView: 75
     OrthographicSize: 5
     NearClipPlane: 0.1
     FarClipPlane: 10000
@@ -849,6 +847,124 @@ MonoBehaviour:
   mCam: {fileID: 200334164}
   shakeIntensity: 1
   shakeTime: 0.4
+--- !u!1 &225209515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 225209518}
+  - component: {fileID: 225209517}
+  - component: {fileID: 225209516}
+  m_Layer: 0
+  m_Name: PointRed Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &225209516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225209515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+--- !u!108 &225209517
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225209515}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 2
+  m_Shape: 0
+  m_Color: {r: 1, g: 0, b: 0.4344826, a: 1}
+  m_Intensity: 6
+  m_Range: 7
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 1
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &225209518
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225209515}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.05, y: -13.170181, z: -5.282008}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1119505438}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &270637887
 GameObject:
   m_ObjectHideFlags: 0
@@ -1447,6 +1563,7 @@ MonoBehaviour:
   - {fileID: 5720694543933036322, guid: cb67d158789b3bc4bac8430b0aab07d8, type: 3}
   - {fileID: 5967494609378589877, guid: a25df851e4de73a43b04df8fa85d7675, type: 3}
   catCount: 0
+  lastMixCato: {fileID: 0}
   objectSpawnerScript: {fileID: 564545798}
 --- !u!114 &564545798
 MonoBehaviour:
@@ -1483,7 +1600,6 @@ MonoBehaviour:
   minSpawnInterval: 2
   normalTimeScale: 1.5
   slowMotionTimeScale: 0.5
-  transitionDuration: 0.3
   maxSlowMotionDuration: 3
   slowMotionRechargeTime: 1
   intervalReductionAmount: 0.3
@@ -1528,6 +1644,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b217d36159ba9e34b9e5518845c7b20b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  comboTimeWindow: 3
+  comboCounter: 0
 --- !u!114 &564545802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1552,6 +1670,9 @@ MonoBehaviour:
     poolSize: 10
   - name: Slam
     prefab: {fileID: 195466, guid: 56c3274d2f9ec214ab584a80b5ce2d6d, type: 3}
+    poolSize: 10
+  - name: ShrinkEffect
+    prefab: {fileID: 169216, guid: 737959db973360b43bdeb1a4874f1af8, type: 3}
     poolSize: 10
 --- !u!1 &582281436
 GameObject:
@@ -2274,7 +2395,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.9843137, b: 0.9949284, a: 1}
-  m_Intensity: 0.9
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2536,7 +2657,7 @@ Transform:
   m_GameObject: {fileID: 738058994}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.355027, y: 7.94, z: -7.6}
+  m_LocalPosition: {x: -9.355027, y: 7.94, z: -7.32}
   m_LocalScale: {x: 6.5626, y: 52.798164, z: 7.1773}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2762,7 +2883,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 10000
-  field of view: 78.51
+  field of view: 75
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2972,7 +3093,7 @@ Transform:
   m_GameObject: {fileID: 974826596}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.355, y: 8.08, z: 12.2231}
+  m_LocalPosition: {x: -9.355, y: 8.08, z: 11.88}
   m_LocalScale: {x: 6.5626, y: 52.798164, z: 9.0463}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3015,7 +3136,10 @@ MonoBehaviour:
   BlastWidthHorizontal: 3
   verticalBlastDepth: 2.4
   horizontalBlastDepth: 2
-  learnedSkills: []
+  learnedSkills:
+  - {fileID: 11400000, guid: e453f54e6a2ada4449d7eb77e1436308, type: 2}
+  - {fileID: 11400000, guid: 65124696db7d0af47a62e54b0ec7c27c, type: 2}
+  - {fileID: 11400000, guid: a3e69de14f0db9f47a0759e5ee1950d1, type: 2}
   skillManageScript: {fileID: 155452918}
 --- !u!4 &1045742513
 Transform:
@@ -3342,6 +3466,7 @@ Transform:
   - {fileID: 705507995}
   - {fileID: 1332706434}
   - {fileID: 947465927}
+  - {fileID: 225209518}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1181372249
@@ -4358,7 +4483,7 @@ RectTransform:
   - {fileID: 1559240078}
   m_Father: {fileID: 1269012429}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.060000002, y: 0.143}
+  m_AnchorMin: {x: 0.060000002, y: 0.12887499}
   m_AnchorMax: {x: 0.94750005, y: 0.36371213}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -4634,7 +4759,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.03916667, y: 0.823}
   m_AnchorMax: {x: 0.93083334, y: 0.97900003}
-  m_AnchoredPosition: {x: 16.049988, y: -169.12793}
+  m_AnchoredPosition: {x: 16.049805, y: -169.12793}
   m_SizeDelta: {x: 115.916626, y: 353.86426}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1445781032
@@ -5177,7 +5302,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 54.5
+  m_fontSize: 56
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5213,7 +5338,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 32.40914, y: 180.70021, z: 29.26168, w: 80.1982}
+  m_margin: {x: 32.40914, y: 192.55368, z: 29.26168, w: 80.1982}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

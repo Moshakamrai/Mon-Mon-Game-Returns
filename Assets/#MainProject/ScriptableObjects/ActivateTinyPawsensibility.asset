@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1be9cdee0fd0344469eb500fe8aeefe4, type: 3}
-  m_Name: ComboTime
+  m_Script: {fileID: 11500000, guid: 3eecc1519239ec2489d81feeec914bed, type: 3}
+  m_Name: ActivateTinyPawsensibility
   m_EditorClassIdentifier: 
-  skillName: 
+  skillName: TinyPawsensibility
   description: 
-  cost: 0
-  comboTimeIncrease: 0
-  slowMotionTimeDecrease: 0
+  activationSkill: 0
+  skillLevel: 0
+  skillChance: 0
+  mixCount: 0
+  chance: 0.2

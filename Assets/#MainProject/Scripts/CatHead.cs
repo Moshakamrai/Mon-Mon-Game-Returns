@@ -16,6 +16,7 @@ public class CatHead : MonoBehaviour
         
         rb = GetComponent<Rigidbody>();
         catCollider = GetComponent<MeshCollider>();
+        speed = 2f;
     }
 
     private void Update()
@@ -67,7 +68,7 @@ public class CatHead : MonoBehaviour
         if (otherCatHead != null && otherCatHead.catType == catType)
         {
             // Combine the cats using the CombinationManager
-            CameraShake.Instance.ShakeCamera();
+            
             gameObject.GetComponent<SphereCollider>().isTrigger = true;
             GameObject newCat = CombinationManager.Instance.CombineCats(gameObject, otherCat);
 
@@ -75,7 +76,7 @@ public class CatHead : MonoBehaviour
             {
                 ContactPoint contact = collision.contacts[0];
                 newCat.transform.position = contact.point;
-
+                CameraShake.Instance.ShakeCamera();
                 // Destroy the root parent of the old cats
                 Destroy(GetRootParent(gameObject));
                 AudioManager.Instance.PlaySFX2("MixSound");
@@ -91,13 +92,30 @@ public class CatHead : MonoBehaviour
         }
     }
 
-    private GameObject GetRootParent(GameObject obj)
-    {
-        Transform root = obj.transform;
-        while (root.parent != null)
-        {
-            root = root.parent;
-        }
-        return root.gameObject;
-    }
+   private GameObject GetRootParent(GameObject obj)
+   {
+       Transform root = obj.transform;
+       while (root.parent != null)
+       {
+           root = root.parent;
+       }
+       return root.gameObject;
+   }
+   
+   public void CatShrink()
+   {
+       GameObject currentCat = GetRootParent(gameObject);
+       
+       Vector3 newScale = currentCat.transform.localScale;
+       newScale.y /= 2;
+       newScale.z /= 2;
+   
+       // Ensure the scale values do not go below zero
+       newScale.y = Mathf.Max(newScale.y, 0.1f);
+       newScale.z = Mathf.Max(newScale.z, 0.1f);
+   
+       currentCat.transform.localScale = newScale;
+   }
+
+
 }

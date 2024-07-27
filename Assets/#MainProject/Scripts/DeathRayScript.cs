@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DeathRayScript : MonoBehaviour
 {
     [SerializeField] bool shouldDie;
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Gato") && other.GetComponent<CatHead>().istouched)
         {
@@ -14,6 +15,7 @@ public class DeathRayScript : MonoBehaviour
         }
     }
 
+    
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Gato"))

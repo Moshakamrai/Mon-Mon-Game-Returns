@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GatoController : MonoBehaviour
+public class SkillMechanics : MonoBehaviour
 {
-
-    [SerializeField] private Material runtimeMaterial;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +15,4 @@ public class GatoController : MonoBehaviour
     {
         
     }
-
-    
 }

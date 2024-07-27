@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7822132fa7050f408600c9ba87f47b4, type: 3}
-  m_Name: ShrinkChance
+  m_Script: {fileID: 11500000, guid: f3b02775b8fc58841bc7d6cf4c20fe95, type: 3}
+  m_Name: ComboNovaBlast
   m_EditorClassIdentifier: 
-  skillName: 
+  skillName: ComboNovaBlast
   description: 
-  cost: 0
-  chance: 0.2
+  activationSkill: 0
+  skillLevel: 0
+  skillChance: 0
+  mixCount: 0

@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aae473f5e38ef8e4ea3c652746b2600f, type: 3}
-  m_Name: QuickRecharge
+  m_Script: {fileID: 11500000, guid: 83b124afec61cac478ce865d3f4d4e66, type: 3}
+  m_Name: FurnovaBlast
   m_EditorClassIdentifier: 
   skillName: 
   description: 
-  cost: 0
-  rechargeRateIncrease: 0
+  activationSkill: 0
+  skillLevel: 0
+  skillChance: 0
+  mixCount: 0
+  chance: 0.2
