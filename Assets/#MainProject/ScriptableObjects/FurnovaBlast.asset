@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83b124afec61cac478ce865d3f4d4e66, type: 3}
   m_Name: FurnovaBlast
   m_EditorClassIdentifier: 
-  skillName: 
-  description: 
+  skillName: Fur-Nova Blast
+  description: 10% chance of activates supernova blast
   activationSkill: 0
   skillLevel: 0
   skillChance: 0

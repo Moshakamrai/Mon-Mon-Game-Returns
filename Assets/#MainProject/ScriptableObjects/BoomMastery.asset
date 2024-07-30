@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c333bdcadefdac4ca463d0573b10008, type: 3}
   m_Name: BoomMastery
   m_EditorClassIdentifier: 
-  skillName: Boom Mastery
-  description: Boom Boom Boom
+  skillName: Boom Paw-splosion
+  description: Creates a boom every 5th match, KABOOM!
   activationSkill: 0
   skillLevel: 1
   skillChance: 0

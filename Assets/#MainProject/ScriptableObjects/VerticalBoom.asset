@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7765704f63da4a841b589b17bd183acd, type: 3}
   m_Name: VerticalBoom
   m_EditorClassIdentifier: 
-  skillName: VerticalBoom
-  description: 
+  skillName: Lightning Purr-splosion
+  description: All blobs in the vertical line explode every 10th mix
   activationSkill: 0
   skillLevel: 1
   skillChance: 0

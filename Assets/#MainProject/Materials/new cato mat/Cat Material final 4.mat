@@ -26,7 +26,7 @@ Material:
   - SRPDEFAULTUNLIT
   - DepthOnly
   - SHADOWCASTER
-  m_LockedProperties: 
+  m_LockedProperties: _Blend
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -169,7 +169,7 @@ Material:
     - _LightmapDirectionYaw: 0
     - _MatCapMaskChannel: 0
     - _MatCapType: 0
-    - _Metallic: 0
+    - _Metallic: 0.146
     - _Mode: 0
     - _NormalsSource: 0
     - _NormalsUVType: 0
@@ -211,7 +211,7 @@ Material:
     - _SelfShadingSize: 0
     - _ShadowColorLightAtten: 1
     - _SingleIndirectColor: 0
-    - _Smoothness: 0
+    - _Smoothness: 0.435
     - _SmoothnessTextureChannel: 0
     - _SpecularEnabled: 0
     - _SpecularHighlights: 1

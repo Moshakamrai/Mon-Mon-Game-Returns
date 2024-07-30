@@ -62,7 +62,7 @@ public class PlayerSkills : MonoBehaviour
         ActivateTinyPawsensibility(position);
         ActivateFurNovaBlast(position);
 
-        if (SkillEvents.Instance.comboCounter > 5)
+        if (SkillEvents.Instance.comboCounter % 5 == 0)
         {
             ActivateComboNovaBlast(position);
         }
@@ -140,7 +140,7 @@ public class PlayerSkills : MonoBehaviour
                     }
                 }
 
-                CombinationManager.Instance.TriggerTemporaryTimeScaleChange(1.8f);
+                CombinationManager.Instance.TriggerTemporaryTimeScaleChange(1.6f);
                 Vector3 newLightningPosition = position - new Vector3(0, 4f, 0);
                 ParticleManager.Instance.SpawnParticle("Lightning", newLightningPosition);
             }
@@ -197,7 +197,7 @@ public class PlayerSkills : MonoBehaviour
                     }
                 }
 
-                CombinationManager.Instance.TriggerTemporaryTimeScaleChange(1.8f);
+                CombinationManager.Instance.TriggerTemporaryTimeScaleChange(1.6f);
                 Vector3 newExplosionPosition = position - new Vector3(0f, 1f, 0);
                 ParticleManager.Instance.SpawnParticle("Slam", newExplosionPosition);
             }
@@ -222,7 +222,7 @@ public class PlayerSkills : MonoBehaviour
                 GameObject currentCato = CombinationManager.Instance.lastMixCato;
                 currentCato.GetComponentInChildren<CatHead>().CatShrink();
                 ParticleManager.Instance.SpawnParticle("ShrinkEffect", currentCato.transform.position);
-                CombinationManager.Instance.TriggerTemporaryTimeScaleChange(2f);
+                CombinationManager.Instance.TriggerTemporaryTimeScaleChange(1.4f);
             }   
         }
         
@@ -271,7 +271,7 @@ public class PlayerSkills : MonoBehaviour
                         collider.transform.root.gameObject.SetActive(false);
                     }
                     ParticleManager.Instance.SpawnParticle("Blast", position);
-                    CombinationManager.Instance.TriggerTemporaryTimeScaleChange(2f);
+                    CombinationManager.Instance.TriggerTemporaryTimeScaleChange(1.4f);
                 }
     }
 

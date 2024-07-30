@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ComboNovaBlast
   m_EditorClassIdentifier: 
   skillName: ComboNovaBlast
-  description: 
+  description: 4 combo blobs in a short interval cause BOOM!
   activationSkill: 0
   skillLevel: 0
   skillChance: 0

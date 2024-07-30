@@ -169,7 +169,7 @@ Material:
     - _LightmapDirectionYaw: 0
     - _MatCapMaskChannel: 0
     - _MatCapType: 0
-    - _Metallic: 0
+    - _Metallic: 0.185
     - _Mode: 0
     - _NormalsSource: 0
     - _NormalsUVType: 0
@@ -211,7 +211,7 @@ Material:
     - _SelfShadingSize: 0
     - _ShadowColorLightAtten: 1
     - _SingleIndirectColor: 0
-    - _Smoothness: 0
+    - _Smoothness: 0.361
     - _SmoothnessTextureChannel: 0
     - _SpecularEnabled: 0
     - _SpecularHighlights: 1
@@ -251,7 +251,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorGradient: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
     - _DetailMapColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0.254717, g: 0.23188858, b: 0.23188858, a: 0}
+    - _EmissionColor: {r: 0.2735849, g: 0.040005337, b: 0.040005337, a: 0}
     - _FlatRimColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _FlatSpecularColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _HColor: {r: 1, g: 1, b: 1, a: 1}
