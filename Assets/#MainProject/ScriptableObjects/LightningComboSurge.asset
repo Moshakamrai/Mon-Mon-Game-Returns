@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e50aeab82a96c184f889d671068b6a47, type: 3}
-  m_Name: MiniMix
+  m_Script: {fileID: 11500000, guid: b92da1e1199b89446a6846d44de72a31, type: 3}
+  m_Name: LightningComboSurge
   m_EditorClassIdentifier: 
-  skillName: MiniMix
+  skillName: Lightning Combo Surge
   description: 
   activationSkill: 0
   skillLevel: 0
   skillChance: 0
   mixCount: 0
-  comboThreshold: 4
+  blastSizeIncrease: 0

@@ -27,7 +27,7 @@ public class SkillEvents : MonoBehaviour
             Destroy(gameObject);
         }
         comboCounter = 1;
-        comboTimeWindow = 5.5f; 
+        comboTimeWindow = 5.75f; 
     }
 
     public event Action<Vector3> OnComboMade;

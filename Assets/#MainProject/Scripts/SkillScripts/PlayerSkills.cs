@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
 
 public class PlayerSkills : MonoBehaviour
@@ -61,10 +60,23 @@ public class PlayerSkills : MonoBehaviour
         ActivateHorizontalBoom(position);
         ActivateTinyPawsensibility(position);
         ActivateFurNovaBlast(position);
+        
 
+        if (SkillEvents.Instance.comboCounter % 3 == 0)
+        {
+            ActivateMiniMix(position);
+            ActivateRandomBurst(position);
+            ActivateComboNovaBlast(position); 
+        }
+        if (SkillEvents.Instance.comboCounter % 4 == 0)
+        {
+            ActivateComboNovaBlast(position); 
+            ActivateGatoComboStrike(position);
+            ActivateLightningComboSurge(position);
+        }
         if (SkillEvents.Instance.comboCounter % 5 == 0)
         {
-            ActivateComboNovaBlast(position);
+            ActivateLightningComboSurge(position);
         }
     }
 
@@ -97,7 +109,126 @@ public class PlayerSkills : MonoBehaviour
             float mixCount = verticalBoomSkill.mixCount;
             if (CombinationManager.Instance.catCount % mixCount == 0)
             {
-                //Debug.Log("Vertical Boom triggered at " + position);
+                VerticleBoom(position);
+            }
+        }
+    }
+
+    public void ActivateHorizontalBoom(Vector3 position)
+    {
+        HorizontalBoom horizontalBoomSkill = (HorizontalBoom)learnedSkills.Find(skill => skill is HorizontalBoom);
+        if (horizontalBoomSkill != null)
+        {
+            CameraShake.Instance.ShakeCamera2();
+            float mixCount = horizontalBoomSkill.mixCount;
+            if (CombinationManager.Instance.catCount % mixCount == 0)
+            {
+               HorizontalBoom(position);
+            }
+        }
+    }
+
+    public void ActivateComboNovaBlast(Vector3 position)
+    {
+        ComboNovaBlast BoomSkill = (ComboNovaBlast)learnedSkills.Find(skill => skill is ComboNovaBlast);
+        if (BoomSkill != null)
+        {
+            BoomMastery(position);  
+        }
+    }
+
+    public void ActivateGatoComboStrike(Vector3 position)
+    {
+        GatoComboStrike BoomSkill = (GatoComboStrike)learnedSkills.Find(skill => skill is GatoComboStrike);
+        if (BoomSkill != null)
+        {
+            HorizontalBoom(position);  
+        }
+    }
+
+    public void ActivateLightningComboSurge(Vector3 position)
+    {
+        VerticleBoom(position);
+    }
+
+
+    public void ActivateTinyPawsensibility(Vector3 position)
+    {
+        ActivateTinyPawsensibility BoomSkill = (ActivateTinyPawsensibility)learnedSkills.Find(skill => skill is ActivateTinyPawsensibility);
+        if (BoomSkill != null)
+        {
+            if (CombinationManager.Instance.ChanceCalculation(20))
+            {
+                GameObject currentCato = CombinationManager.Instance.lastMixCato;
+                currentCato.GetComponentInChildren<CatHead>().CatShrink();
+                ParticleManager.Instance.SpawnParticle("ShrinkEffect", currentCato.transform.position);
+                CombinationManager.Instance.TriggerTemporaryTimeScaleChange(1.4f);
+            }   
+        }
+        
+    }
+
+    public void ActivateFurNovaBlast(Vector3 position)
+    {
+        FurNovaBlast BoomSkill = (FurNovaBlast)learnedSkills.Find(skill => skill is FurNovaBlast);
+        if (BoomSkill != null) 
+        {
+            if (CombinationManager.Instance.ChanceCalculation(20))
+            {
+                GameObject currentCato = CombinationManager.Instance.lastMixCato;
+                
+                BoomMastery(position);       
+            }
+        }
+         
+    }
+
+    public void ActivateMiniMix(Vector3 position)
+    {
+        Debug.Log("Mini mix should work");
+        MiniMix BoomSkill = (MiniMix)learnedSkills.Find(skill => skill is MiniMix);
+        if (BoomSkill != null)
+        {
+             Debug.Log("Mini mix should work");
+            GameObject currentCato = CombinationManager.Instance.lastMixCato;
+            currentCato.GetComponentInChildren<CatHead>().CatShrink();
+            ParticleManager.Instance.SpawnParticle("ShrinkEffect", currentCato.transform.position);
+            CombinationManager.Instance.TriggerTemporaryTimeScaleChange(1.4f);
+        }
+    }
+
+    public void ActivateRandomBurst(Vector3 position)
+    {
+         Debug.Log("RandomBurst mix should work");
+        RandomBurst BoomSkill = (RandomBurst)learnedSkills.Find(skill => skill is RandomBurst);
+        if (BoomSkill != null)
+        {
+         
+            int randomValue = Random.Range(1, 4); // Generates a random number between 1 and 3
+
+            switch (randomValue)
+            {
+                case 1:
+                    VerticleBoom(position);
+                    break;
+                case 2:
+                    HorizontalBoom(position);
+                    break;
+                case 3:
+                    BoomMastery(position);
+                    break;
+                default:
+                    // Optional: Handle unexpected cases (though shouldn't be needed here)
+                    break;
+            
+            }
+
+        }
+    }
+
+    public void VerticleBoom(Vector3 position)
+    {
+        //Debug.Log("Vertical Boom triggered at " + position);
 
                 // Calculate the raycast range
                 float raycastDistance = Mathf.Infinity;
@@ -143,20 +274,11 @@ public class PlayerSkills : MonoBehaviour
                 CombinationManager.Instance.TriggerTemporaryTimeScaleChange(1.6f);
                 Vector3 newLightningPosition = position - new Vector3(0, 4f, 0);
                 ParticleManager.Instance.SpawnParticle("Lightning", newLightningPosition);
-            }
-        }
     }
 
-    public void ActivateHorizontalBoom(Vector3 position)
+    public void HorizontalBoom(Vector3 position)
     {
-        HorizontalBoom horizontalBoomSkill = (HorizontalBoom)learnedSkills.Find(skill => skill is HorizontalBoom);
-        if (horizontalBoomSkill != null)
-        {
-            CameraShake.Instance.ShakeCamera2();
-            float mixCount = horizontalBoomSkill.mixCount;
-            if (CombinationManager.Instance.catCount % mixCount == 0)
-            {
-               // Debug.Log("Horizontal Boom triggered at " + position);
+         // Debug.Log("Horizontal Boom triggered at " + position);
 
                 // Calculate the raycast range
                 float raycastDistance = Mathf.Infinity;
@@ -200,47 +322,6 @@ public class PlayerSkills : MonoBehaviour
                 CombinationManager.Instance.TriggerTemporaryTimeScaleChange(1.6f);
                 Vector3 newExplosionPosition = position - new Vector3(0f, 1f, 0);
                 ParticleManager.Instance.SpawnParticle("Slam", newExplosionPosition);
-            }
-        }
-    }
-
-    public void ActivateComboNovaBlast(Vector3 position)
-    {
-        ComboNovaBlast BoomSkill = (ComboNovaBlast)learnedSkills.Find(skill => skill is ComboNovaBlast);
-        if (BoomSkill != null)
-        {
-            BoomMastery(position);  
-        }
-    }
-    public void ActivateTinyPawsensibility(Vector3 position)
-    {
-        ActivateTinyPawsensibility BoomSkill = (ActivateTinyPawsensibility)learnedSkills.Find(skill => skill is ActivateTinyPawsensibility);
-        if (BoomSkill != null)
-        {
-            if (CombinationManager.Instance.ChanceCalculation(20))
-            {
-                GameObject currentCato = CombinationManager.Instance.lastMixCato;
-                currentCato.GetComponentInChildren<CatHead>().CatShrink();
-                ParticleManager.Instance.SpawnParticle("ShrinkEffect", currentCato.transform.position);
-                CombinationManager.Instance.TriggerTemporaryTimeScaleChange(1.4f);
-            }   
-        }
-        
-    }
-
-    public void ActivateFurNovaBlast(Vector3 position)
-    {
-        FurNovaBlast BoomSkill = (FurNovaBlast)learnedSkills.Find(skill => skill is FurNovaBlast);
-        if (BoomSkill != null) 
-        {
-            if (CombinationManager.Instance.ChanceCalculation(20))
-            {
-                GameObject currentCato = CombinationManager.Instance.lastMixCato;
-                
-                BoomMastery(position);       
-            }
-        }
-         
     }
 
     public void BoomMastery(Vector3 position)
@@ -275,6 +356,8 @@ public class PlayerSkills : MonoBehaviour
                 }
     }
 
+   
+
     public void ActivateShrinkChance(float chance)
     {
         // Logic for 20% chance of making blob half size
@@ -290,10 +373,7 @@ public class PlayerSkills : MonoBehaviour
         // Logic for making blobs more springy
     }
 
-    public void ActivateRandomBurst()
-    {
-        // Logic for random attribute after 4 combos
-    }
+    
 
     public void ActivateFutureSight()
     {

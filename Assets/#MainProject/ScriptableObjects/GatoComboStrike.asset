@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e50aeab82a96c184f889d671068b6a47, type: 3}
-  m_Name: MiniMix
+  m_Script: {fileID: 11500000, guid: 01e7f074b9b6b954993a93ce12e2431c, type: 3}
+  m_Name: GatoComboStrike
   m_EditorClassIdentifier: 
-  skillName: MiniMix
+  skillName: Gato Combo Strike
   description: 
   activationSkill: 0
   skillLevel: 0
   skillChance: 0
   mixCount: 0
-  comboThreshold: 4
+  blastSizeIncrease: 0

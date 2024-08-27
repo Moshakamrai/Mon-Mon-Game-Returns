@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e50aeab82a96c184f889d671068b6a47, type: 3}
-  m_Name: MiniMix
+  m_Script: {fileID: 11500000, guid: ff422b9005af2e142af2d51f582c1fb9, type: 3}
+  m_Name: RandomPawburst
   m_EditorClassIdentifier: 
-  skillName: MiniMix
+  skillName: Random Paw-burst
   description: 
   activationSkill: 0
   skillLevel: 0
   skillChance: 0
   mixCount: 0
-  comboThreshold: 4
