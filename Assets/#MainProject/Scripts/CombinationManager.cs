@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -26,6 +27,13 @@ public class CombinationManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        UIManager.Instance.OnPointsThresholdCrossed += HandlePointsThresholdCrossed;
+    }
+    
+
+     
     public GameObject CombineCats(GameObject cat1, GameObject cat2)
     {
         catCount++;
@@ -81,6 +89,11 @@ public class CombinationManager : MonoBehaviour
         objectSpawnerScript.StopSpawn();
     }
 
+    public void UnpauseGame()
+    {
+        objectSpawnerScript.StartSpawn();   
+    }
+
     public bool ChanceCalculation(float percentageChance)
     {
        // Debug.Log("CALCULATE CHANCE");
@@ -99,6 +112,16 @@ public class CombinationManager : MonoBehaviour
         
     }
 
+    void HandlePointsThresholdCrossed(float points)
+    {
+    Debug.LogError($"Points threshold crossed! Total points: {points}");
+    // Add your custom logic here
+    }   
+
+    public void DestroyBlob(GameObject obj)
+    {
+        objectSpawnerScript.RedirectRemoveBlob(obj);
+    }
 
 }
 

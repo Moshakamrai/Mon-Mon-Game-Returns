@@ -11,9 +11,10 @@ public class CatHead : MonoBehaviour
     private Collider catCollider;
     public bool istouched;
 
+    private ObjectSpawnerModel model;
     private void Start()
     {
-        
+       
         rb = GetComponent<Rigidbody>();
         catCollider = GetComponent<MeshCollider>();
         speed = 2f;
@@ -79,8 +80,10 @@ public class CatHead : MonoBehaviour
                 CameraShake.Instance.ShakeCamera();
                 // Destroy the root parent of the old cats
                 Destroy(GetRootParent(gameObject));
+               
                 AudioManager.Instance.PlaySFX2("MixSound");
                 Destroy(GetRootParent(otherCat));
+                
             }
         }
         else if (!splashSound && (collision.gameObject.CompareTag("Gato") || collision.gameObject.CompareTag("Ground")))

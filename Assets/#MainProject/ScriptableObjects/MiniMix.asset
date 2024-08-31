@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50aeab82a96c184f889d671068b6a47, type: 3}
   m_Name: MiniMix
   m_EditorClassIdentifier: 
-  skillName: MiniMix
+  skillName: Mini Mix Mew
   description: 
   activationSkill: 0
   skillLevel: 0

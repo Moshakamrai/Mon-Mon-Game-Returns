@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eecc1519239ec2489d81feeec914bed, type: 3}
   m_Name: ActivateTinyPawsensibility
   m_EditorClassIdentifier: 
-  skillName: Tiny-Pawsensibility
+  skillName: Tiny Paw-sensibility
   description: 10% chance of making blobs half size on every mix.
   activationSkill: 0
   skillLevel: 0

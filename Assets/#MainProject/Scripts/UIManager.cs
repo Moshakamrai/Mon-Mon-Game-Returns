@@ -23,6 +23,21 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject gameOverPanel;
 
+    [SerializeField] private GameObject[] allPowerUpChooser;
+
+    private List<int> chosenIndices = new List<int>();
+
+    private List<int> shownPowerUps = new List<int>();
+
+    [SerializeField] private GameObject powerUpPanel; // UI panel for level transitions
+
+    // Define a delegate and event for the point threshold crossing
+    public delegate void PointsThresholdCrossedHandler(float points);
+    public event PointsThresholdCrossedHandler OnPointsThresholdCrossed;
+
+    // The threshold value for triggering the event
+    [SerializeField] private float threshold = 1000f; // Example threshold
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -40,17 +55,9 @@ public class UIManager : MonoBehaviour
         // Initialize the slow motion bar to full value
         slowMotionBar.maxValue = 1;
         slowMotionBar.value = 1;
+        CameraShake.Instance.StopShake();
+        //ShowLevelTransitionUI();
     }
-
-    //public void SetNextBlobUI(int blobIndex)
-    //{
-    //    blobUI.sprite = blobSprites[blobIndex];
-    //}
-
-    //public void UpdateSlowMotionBar(float value)
-    //{
-    //    slowMotionBar.value = value;
-    //}
 
     public void SetMaxSlowMotionBar(float value)
     {
@@ -101,8 +108,8 @@ public class UIManager : MonoBehaviour
 
     public void ShowFloatingPoints(Vector3 position, float mixPoints)
     {
-        float x = Random.Range(0.1f, 2);
-        float y = Random.Range(2f, 4);
+        float x = UnityEngine.Random.Range(0.1f, 2); // Explicitly use UnityEngine.Random
+        float y = UnityEngine.Random.Range(2f, 4);  // Explicitly use UnityEngine.Random
         AddPoints(mixPoints);
         position += new Vector3(x, y, 0);
         DynamicTextManager.CreateText(position, mixPoints.ToString(), floatingFont);
@@ -110,8 +117,8 @@ public class UIManager : MonoBehaviour
 
     public void ShowFloatingPointsSmall(Vector3 position, float mixPoints)
     {
-        float x = Random.Range(0.1f, 2);
-        float y = Random.Range(2f, 4);
+        float x = UnityEngine.Random.Range(0.1f, 2); // Explicitly use UnityEngine.Random
+        float y = UnityEngine.Random.Range(2f, 4);  // Explicitly use UnityEngine.Random
         AddPoints(mixPoints);
         position += new Vector3(x, y, 0);
         DynamicTextManager.CreateTextNew(position, mixPoints.ToString(), floatingFont);
@@ -121,10 +128,118 @@ public class UIManager : MonoBehaviour
     {
         totalPoints += pointsScored;
         pointText.text = totalPoints.ToString();
+
+        // Check if the total points have crossed the threshold
+        if (totalPoints >= LevelManager.Instance.nextPointGoal)
+        {
+            // Trigger the event
+            OnPointsThresholdCrossed?.Invoke(totalPoints);
+            //threshold *= 3;
+        }
     }
 
     public void GameOverPanelActive()
     {
         gameOverPanel.SetActive(true);
     }
+
+    // Optional: Method to update the threshold
+    public void SetThreshold(float newThreshold)
+    {
+        threshold = newThreshold;
+    }
+
+    // Method to show the level transition UI
+    public void ShowLevelTransitionUI()
+    {
+        if (powerUpPanel != null)
+        {
+            RandomPowerUpPool();
+            
+            powerUpPanel.SetActive(true);
+            // Optionally add animation or delay here
+        }
+    }
+
+    // Method to hide the level transition UI (e.g., after the player clicks to continue)
+    public void HideLevelTransitionUI()
+    {
+        if (powerUpPanel != null)
+        {
+            CombinationManager.Instance.UnpauseGame();
+            powerUpPanel.SetActive(false);
+            CameraShake.Instance.StopShake();
+        }
+    }
+
+
+    public void RandomPowerUpPool()
+    {
+        // Deactivate all power-ups to reset the state
+        foreach (GameObject powerUp in allPowerUpChooser)
+        {
+            powerUp.SetActive(false);
+        }
+
+        // List to hold the indices of available power-ups
+        List<int> availableIndices = new List<int>();
+        for (int i = 0; i < allPowerUpChooser.Length; i++)
+        {
+            if (!shownPowerUps.Contains(i)) // Only include indices that have not been shown
+            {
+                availableIndices.Add(i);
+            }
+        }
+
+        // Ensure there are at least 3 available indices
+        if (availableIndices.Count < 3)
+        {
+            Debug.LogWarning("Not enough power-ups available to choose from.");
+            return;
+        }
+
+        // Randomly select 3 unique indices
+        List<int> selectedIndices = new List<int>();
+        while (selectedIndices.Count < 3)
+        {
+            int randomIndex = Random.Range(0, availableIndices.Count);
+            int chosenIndex = availableIndices[randomIndex];
+
+            if (!selectedIndices.Contains(chosenIndex))
+            {
+                selectedIndices.Add(chosenIndex);
+            }
+        }
+
+        // Activate the selected power-ups
+        foreach (int index in selectedIndices)
+        {
+            allPowerUpChooser[index].SetActive(true);
+        }
+
+        // Track the shown power-ups
+        foreach (int index in selectedIndices)
+        {
+            TrackChosenPowerUp(index);
+        }
+
+        // Add the selected indices to the list of shown power-ups
+        shownPowerUps.AddRange(selectedIndices);
+    }
+
+    public void TrackChosenPowerUp(int index)
+    {
+        // Add the chosen index to the list to ensure it's not picked again in this session
+        if (!chosenIndices.Contains(index))
+        {
+            chosenIndices.Add(index);
+        }
+    }
+
+    public void ResetShownPowerUps()
+    {
+        // Clear the list of shown power-ups to allow them to be activated again
+        shownPowerUps.Clear();
+    }
 }
+

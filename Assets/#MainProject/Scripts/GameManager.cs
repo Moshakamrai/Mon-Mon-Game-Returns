@@ -5,7 +5,6 @@ public class GameManager : MonoBehaviour
 {
     public GameSubject gameSubject = new GameSubject(); // Observer pattern subject
 
-    public GameObject deathRay;
 
     private void Start()
     {

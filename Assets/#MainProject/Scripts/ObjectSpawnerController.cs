@@ -4,6 +4,7 @@ using System.Collections;
 public class ObjectSpawnerController : MonoBehaviour
 {
     public GameObject[] objectsToSpawn;
+    public GameObject Oddobject1;
     public Transform referenceObject; // Reference object for the spawn location
     private ObjectSpawnerModel model;
 
@@ -37,6 +38,7 @@ public class ObjectSpawnerController : MonoBehaviour
         currentSlowMotionTime = maxSlowMotionDuration;
         UIManager.Instance.SetMaxSlowMotionBar(maxSlowMotionDuration);
         shouldSpawn = true;
+        GameController(true);
     }
 
     public void GameController(bool currentSpawnStatus)
@@ -48,6 +50,8 @@ public class ObjectSpawnerController : MonoBehaviour
     void Update()
     {
         HandleTouch();
+
+       
     }
 
     void HandleTouch()
@@ -143,10 +147,10 @@ public class ObjectSpawnerController : MonoBehaviour
             objectsSpawnedCount++;
 
             // Check if it's time to reduce spawn interval
-            if (objectsSpawnedCount % intervalReductionCount == 0 && spawnInterval > minSpawnInterval)
-            {
-                spawnInterval -= intervalReductionAmount;
-            }
+            // if (objectsSpawnedCount % intervalReductionCount == 0 && spawnInterval > minSpawnInterval)
+            // {
+            //     spawnInterval -= intervalReductionAmount;
+            // }
         }
         else
         {
@@ -159,10 +163,20 @@ public class ObjectSpawnerController : MonoBehaviour
         shouldSpawn = false;
     }
 
+    public void StartSpawn()
+    {
+        shouldSpawn = true;
+    }
+
     public GameObject GetNextObjectToSpawn()
     {
         return model.GetNextObjectToSpawn();
     }
 
-   
+    public void RedirectRemoveBlob(GameObject obj)
+    {
+        model.ReturnObjectToPool(obj);
+    }
+
+    
 }

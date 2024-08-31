@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b02775b8fc58841bc7d6cf4c20fe95, type: 3}
   m_Name: ComboNovaBlast
   m_EditorClassIdentifier: 
-  skillName: ComboNovaBlast
+  skillName: Combo-Nova Blast
   description: 4 combo blobs in a short interval cause BOOM!
   activationSkill: 0
   skillLevel: 0

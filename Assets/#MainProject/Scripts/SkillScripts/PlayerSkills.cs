@@ -87,11 +87,11 @@ public class PlayerSkills : MonoBehaviour
         BoomMastery supernovaBoomSkill = (BoomMastery)learnedSkills.Find(skill => skill is BoomMastery);
         if (supernovaBoomSkill != null)
         {
-            CameraShake.Instance.ShakeCamera2();
+            
             float mixCount = supernovaBoomSkill.mixCount;
             if (CombinationManager.Instance.catCount % mixCount == 0)
             {
-                
+                CameraShake.Instance.ShakeCamera2();
                 BoomMastery(position);
                 // Optionally, you can also instantiate a visual effect for the explosion
                 // Example: Instantiate(explosionEffectPrefab, position, Quaternion.identity);
@@ -105,10 +105,11 @@ public class PlayerSkills : MonoBehaviour
         VerticalBoom verticalBoomSkill = (VerticalBoom)learnedSkills.Find(skill => skill is VerticalBoom);
         if (verticalBoomSkill != null)
         {
-            CameraShake.Instance.ShakeCamera2();
+           
             float mixCount = verticalBoomSkill.mixCount;
             if (CombinationManager.Instance.catCount % mixCount == 0)
             {
+                CameraShake.Instance.ShakeCamera2();
                 VerticleBoom(position);
             }
         }
@@ -119,10 +120,11 @@ public class PlayerSkills : MonoBehaviour
         HorizontalBoom horizontalBoomSkill = (HorizontalBoom)learnedSkills.Find(skill => skill is HorizontalBoom);
         if (horizontalBoomSkill != null)
         {
-            CameraShake.Instance.ShakeCamera2();
+            
             float mixCount = horizontalBoomSkill.mixCount;
             if (CombinationManager.Instance.catCount % mixCount == 0)
             {
+               CameraShake.Instance.ShakeCamera2();
                HorizontalBoom(position);
             }
         }
@@ -148,7 +150,12 @@ public class PlayerSkills : MonoBehaviour
 
     public void ActivateLightningComboSurge(Vector3 position)
     {
-        VerticleBoom(position);
+        LightningComboSurge BoomSkill = (LightningComboSurge)learnedSkills.Find(skill => skill is LightningComboSurge);
+        if (BoomSkill != null)
+        {
+            VerticleBoom(position);
+        }
+        
     }
 
 
@@ -191,9 +198,13 @@ public class PlayerSkills : MonoBehaviour
         {
              Debug.Log("Mini mix should work");
             GameObject currentCato = CombinationManager.Instance.lastMixCato;
-            currentCato.GetComponentInChildren<CatHead>().CatShrink();
-            ParticleManager.Instance.SpawnParticle("ShrinkEffect", currentCato.transform.position);
-            CombinationManager.Instance.TriggerTemporaryTimeScaleChange(1.4f);
+            if (currentCato != null)
+            {
+                currentCato.GetComponentInChildren<CatHead>().CatShrink();
+                ParticleManager.Instance.SpawnParticle("ShrinkEffect", currentCato.transform.position);
+                CombinationManager.Instance.TriggerTemporaryTimeScaleChange(1.4f);
+            }
+            
         }
     }
 
