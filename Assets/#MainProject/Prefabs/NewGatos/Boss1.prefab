@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 6554932243562268822}
   - component: {fileID: 5817764898644423242}
   - component: {fileID: 931633408014392787}
-  - component: {fileID: 7827544390781233052}
+  - component: {fileID: 7479884527202408752}
   m_Layer: 3
   m_Name: 'Cato '
   m_TagString: Gato
@@ -478,7 +478,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3471805035147313068, guid: a8579f9cc06a4c943a96a977e96608fd, type: 3}
---- !u!114 &7827544390781233052
+--- !u!114 &7479884527202408752
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -487,13 +487,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 513449874581707555}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b185496b24346e4b86f1198d4a60922, type: 3}
+  m_Script: {fileID: 11500000, guid: 55c6b1e4220ba22468bd516b26c80977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  catType: 7
-  splashSound: 0
-  speed: 1
-  istouched: 0
+  bossMix: 0
 --- !u!1 &764509695711805471
 GameObject:
   m_ObjectHideFlags: 0
@@ -10506,7 +10503,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 92c6e84a256900b4183035651d563710, type: 2}
+  - {fileID: 2100000, guid: 4074a153e07705848bda9f5801beed7a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20507,7 +20504,7 @@ GameObject:
   - component: {fileID: 5553482597776415768}
   - component: {fileID: 1341705305966930283}
   m_Layer: 0
-  m_Name: Cato Model Final (8)
+  m_Name: Boss1
   m_TagString: Gato
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20523,7 +20520,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 4.5, z: 4.5}
+  m_LocalScale: {x: 3, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3092684271318630130}

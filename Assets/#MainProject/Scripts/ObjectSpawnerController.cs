@@ -6,7 +6,8 @@ public class ObjectSpawnerController : MonoBehaviour
     public GameObject[] objectsToSpawn;
     public GameObject Oddobject1;
     public Transform referenceObject; // Reference object for the spawn location
-    private ObjectSpawnerModel model;
+
+    private int nextObjectIndex;
 
     [SerializeField] private float rightBarrier;
     [SerializeField] private float leftBarrier;
@@ -18,7 +19,6 @@ public class ObjectSpawnerController : MonoBehaviour
 
     [SerializeField] private float normalTimeScale = 1.5f;
     [SerializeField] private float slowMotionTimeScale = 0.8f;
-    //[SerializeField] private float transitionDuration = 1f; // Duration for the smooth transition
 
     [SerializeField] private float maxSlowMotionDuration = 3f; // Maximum duration for slow motion
     [SerializeField] private float slowMotionRechargeTime = 0.5f; // Recharge time in seconds
@@ -27,13 +27,15 @@ public class ObjectSpawnerController : MonoBehaviour
     private bool isSlowMotionActive = false;
 
     private int objectsSpawnedCount = 0;
-    private const int intervalReductionCount = 10; // Number of objects spawned before reducing spawn interval
-    [SerializeField] private float intervalReductionAmount = 0.2f; // Amount to reduce spawn interval
     [SerializeField] private bool shouldSpawn;
+
+    private Coroutine spawnCoroutine; // Reference to the coroutine
+    private bool isSpawning = false;  // Flag to ensure only one coroutine runs at a time
 
     void Start()
     {
-        model = new ObjectSpawnerModel(objectsToSpawn);
+        SetNextObjectIndex();
+
         Time.timeScale = normalTimeScale; // Set the initial time scale
         currentSlowMotionTime = maxSlowMotionDuration;
         UIManager.Instance.SetMaxSlowMotionBar(maxSlowMotionDuration);
@@ -43,15 +45,20 @@ public class ObjectSpawnerController : MonoBehaviour
 
     public void GameController(bool currentSpawnStatus)
     {
-        StartCoroutine(SpawnObjectPeriodically(currentSpawnStatus));
-        
+        if (spawnCoroutine != null)
+        {
+            StopCoroutine(spawnCoroutine);
+            spawnCoroutine = null; // Reset coroutine reference
+        }
+        if (currentSpawnStatus)
+        {
+            spawnCoroutine = StartCoroutine(SpawnObjectPeriodically());
+        }
     }
 
     void Update()
     {
         HandleTouch();
-
-       
     }
 
     void HandleTouch()
@@ -101,7 +108,6 @@ public class ObjectSpawnerController : MonoBehaviour
         while (isSlowMotionActive && currentSlowMotionTime > 0)
         {
             currentSlowMotionTime -= Time.unscaledDeltaTime;
-            // UIManager.Instance.UpdateSlowMotionBar(currentSlowMotionTime);
             yield return null;
         }
 
@@ -116,23 +122,23 @@ public class ObjectSpawnerController : MonoBehaviour
         while (currentSlowMotionTime < maxSlowMotionDuration)
         {
             currentSlowMotionTime += slowMotionRechargeTime * Time.unscaledDeltaTime;
-            // UIManager.Instance.UpdateSlowMotionBar(currentSlowMotionTime);
             yield return null;
         }
 
         currentSlowMotionTime = maxSlowMotionDuration;
-        // UIManager.Instance.UpdateSlowMotionBar(maxSlowMotionDuration);
         isRecharging = false;
     }
 
     // Coroutine for periodic spawning
-    private IEnumerator SpawnObjectPeriodically(bool spawnStatus)
+    private IEnumerator SpawnObjectPeriodically()
     {
-        while (spawnStatus)
+        isSpawning = true;
+        while (shouldSpawn)
         {
             SpawnObject();
             yield return new WaitForSeconds(spawnInterval);
         }
+        isSpawning = false;
     }
 
     void SpawnObject()
@@ -141,16 +147,13 @@ public class ObjectSpawnerController : MonoBehaviour
         {
             Vector3 spawnPosition = referenceObject.position;
             spawnPosition.y -= 2f; // Adjust the Y position by 2 units
-            model.SpawnNextObject(spawnPosition, null);
+            GameObject objectToSpawn = Instantiate(objectsToSpawn[nextObjectIndex], spawnPosition, Quaternion.Euler(0, 180, 0));
+            objectToSpawn.SetActive(true); // Activate the object
             AudioManager.Instance.PlaySFX2("SpawnSound");
 
             objectsSpawnedCount++;
 
-            // Check if it's time to reduce spawn interval
-            // if (objectsSpawnedCount % intervalReductionCount == 0 && spawnInterval > minSpawnInterval)
-            // {
-            //     spawnInterval -= intervalReductionAmount;
-            // }
+            SetNextObjectIndex();
         }
         else
         {
@@ -158,25 +161,40 @@ public class ObjectSpawnerController : MonoBehaviour
         }
     }
 
+    private void SetNextObjectIndex()
+    {
+        nextObjectIndex = Random.Range(0, objectsToSpawn.Length);
+    }
+
     public void StopSpawn()
     {
         shouldSpawn = false;
+        if (spawnCoroutine != null)
+        {
+            StopCoroutine(spawnCoroutine); // Stop the existing coroutine
+            spawnCoroutine = null; // Reset the coroutine reference
+        }
     }
 
     public void StartSpawn()
     {
-        shouldSpawn = true;
+        if (!shouldSpawn)
+        {
+            shouldSpawn = true;
+            if (!isSpawning)
+            {
+                spawnCoroutine = StartCoroutine(SpawnObjectPeriodically());
+            }
+        }
     }
 
     public GameObject GetNextObjectToSpawn()
     {
-        return model.GetNextObjectToSpawn();
+        return objectsToSpawn[nextObjectIndex];
     }
 
     public void RedirectRemoveBlob(GameObject obj)
     {
-        model.ReturnObjectToPool(obj);
+        Destroy(obj);
     }
-
-    
 }

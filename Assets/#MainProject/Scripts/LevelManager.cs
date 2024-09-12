@@ -27,7 +27,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private int thesholdIndex;
 
     // Additional point threshold for triggering UI
-    [SerializeField] private float[] uiTriggerThreshold = { 20000f, 80000f, 120000f };
+    [SerializeField] private float[] uiTriggerThreshold = { 20000f, 100000f, 200000f };
 
     public float nextPointGoal;
 
@@ -66,7 +66,7 @@ public class LevelManager : MonoBehaviour
     private void OnPointsThresholdCrossed(float points)
     {
         // Calculate the multiplier based on the current level
-        int levelMultiplier = (int)currentLevel;
+        //int levelMultiplier = (int)currentLevel;
 
         // Check if UI should be triggered
         if (!uiTriggered && points >= nextPointGoal)
@@ -78,15 +78,15 @@ public class LevelManager : MonoBehaviour
 
             // Update thesholdIndex based on the level
             thesholdIndex += 1;
-            uiTriggerThreshold[thesholdIndex] *= levelMultiplier;
+           // uiTriggerThreshold[thesholdIndex] *= levelMultiplier;
             nextPointGoal = uiTriggerThreshold[thesholdIndex];
         }
 
         // Advance to the next level when the threshold for the current level is crossed
         if (points >= levelPointThresholds[(int)currentLevel - 1]) // Adjusted for 0-based index
         {
-            CombinationManager.Instance.PauseGame();
-            AdvanceToNextLevel();
+            // CombinationManager.Instance.PauseGame();
+            // AdvanceToNextLevel();
         }
     }
 

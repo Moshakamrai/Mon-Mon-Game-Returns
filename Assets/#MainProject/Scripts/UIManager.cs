@@ -35,6 +35,8 @@ public class UIManager : MonoBehaviour
     public delegate void PointsThresholdCrossedHandler(float points);
     public event PointsThresholdCrossedHandler OnPointsThresholdCrossed;
 
+    public event PointsThresholdCrossedHandler onPointDamage;
+
     // The threshold value for triggering the event
     [SerializeField] private float threshold = 1000f; // Example threshold
 
@@ -134,6 +136,8 @@ public class UIManager : MonoBehaviour
         {
             // Trigger the event
             OnPointsThresholdCrossed?.Invoke(totalPoints);
+
+            onPointDamage?.Invoke(pointsScored);
             //threshold *= 3;
         }
     }
