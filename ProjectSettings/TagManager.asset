@@ -9,6 +9,7 @@ TagManager:
   - Gato
   - Ground
   - OddGato
+  - BossGato
   layers:
   - Default
   - TransparentFX

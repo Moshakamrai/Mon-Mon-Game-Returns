@@ -264,6 +264,13 @@ public class PlayerSkills : MonoBehaviour
                             UIManager.Instance.ShowFloatingPoints(rootParent.gameObject.transform.position, 1000f);
                             Destroy(rootParent.gameObject);
                         }
+                        if (rootParent.CompareTag("BossGato"))
+                        {
+                            Debug.LogError("DAMAGE THE BOSS");
+                            
+                            Boss1 boss = rootParent.GetComponent<Boss1>();
+                            boss.GetDamage(75);
+                        }
                     }
 
                     // Perform raycast upwards
@@ -277,6 +284,12 @@ public class PlayerSkills : MonoBehaviour
                         {
                             UIManager.Instance.ShowFloatingPoints(rootParent.gameObject.transform.position, 1000f);
                             Destroy(rootParent.gameObject);
+                        }
+                        if (rootParent.CompareTag("BossGato"))
+                        {
+                            Debug.LogError("DAMAGE THE BOSS");
+                            Boss1 boss = rootParent.GetComponent<Boss1>();
+                            boss.GetDamage(75);
                         }
                                       
                     }
@@ -313,6 +326,13 @@ public class PlayerSkills : MonoBehaviour
                         {
                             UIManager.Instance.ShowFloatingPoints(rootParent.gameObject.transform.position, 1000f);
                             Destroy(rootParent.gameObject);
+                            
+                        }
+                        if (rootParent.CompareTag("BossGato"))
+                        {
+                            Debug.LogError("DAMAGE THE BOSS");
+                            Boss1 boss = rootParent.GetComponent<Boss1>();
+                            boss.GetDamage(75);
                         }
                     }
 
@@ -326,6 +346,12 @@ public class PlayerSkills : MonoBehaviour
                         {
                             UIManager.Instance.ShowFloatingPoints(rootParent.gameObject.transform.position, 1000f);
                             Destroy(rootParent.gameObject);
+                        }
+                        if (rootParent.CompareTag("BossGato"))
+                        {
+                            Debug.LogError("DAMAGE THE BOSS");
+                            Boss1 boss = rootParent.GetComponent<Boss1>();
+                            boss.GetDamage(75);
                         }
                     }
                 }
@@ -361,6 +387,12 @@ public class PlayerSkills : MonoBehaviour
                     {
                         UIManager.Instance.ShowFloatingPoints(collider.gameObject.transform.position, 1000f);
                         collider.transform.root.gameObject.SetActive(false);
+                    }
+                    if (collider.gameObject.GetComponent<Boss1>() != null)
+                    {
+                        Debug.LogError("DAMAGE THE BOSS");
+                        Boss1 boss = collider.gameObject.GetComponent<Boss1>();
+                        boss.GetDamage(75);
                     }
                     ParticleManager.Instance.SpawnParticle("Blast", position);
                     CombinationManager.Instance.TriggerTemporaryTimeScaleChange(1.4f);

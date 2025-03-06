@@ -14,6 +14,15 @@ public class CombinationManager : MonoBehaviour
 
     public ObjectSpawnerController objectSpawnerScript;
 
+    public CatType bossType;
+
+    public delegate void onPointBossDamage();
+
+    public delegate void onPointBossBuff();
+
+    public event onPointBossDamage onPointDamage;
+    public event onPointBossDamage bossBuff;
+
     private void Awake()
     {
         if (Instance == null)
@@ -36,6 +45,15 @@ public class CombinationManager : MonoBehaviour
      
     public GameObject CombineCats(GameObject cat1, GameObject cat2)
     {
+        if (bossType == cat1.GetComponent<CatHead>().catType )
+        {
+            Debug.Log("BOSS SHOULD BE ENRAGED");
+            bossBuff?.Invoke();
+        }
+        else 
+        {
+            onPointDamage?.Invoke();
+        }
         catCount++;
         CatHead head1 = cat1.GetComponent<CatHead>();
         CatHead head2 = cat2.GetComponent<CatHead>();
@@ -114,8 +132,10 @@ public class CombinationManager : MonoBehaviour
 
     void HandlePointsThresholdCrossed(float points)
     {
-    Debug.LogError($"Points threshold crossed! Total points: {points}");
+       Debug.LogError($"Points threshold crossed! Total points: {points}");
     // Add your custom logic here
+    //    LevelManager.Instance.ActivateBOSS();
+       UIManager.Instance.OnPointsThresholdCrossed -= HandlePointsThresholdCrossed;
     }   
 
     public void DestroyBlob(GameObject obj)

@@ -6,6 +6,8 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
 
+    public GameObject Boss;
+
     // Enum to represent different levels
     public enum GameLevel
     {
@@ -32,6 +34,11 @@ public class LevelManager : MonoBehaviour
     public float nextPointGoal;
 
     private bool uiTriggered = false;
+
+    
+
+    
+
 
     void Awake()
     {
@@ -76,10 +83,16 @@ public class LevelManager : MonoBehaviour
             TriggerUIBetweenLevels();
             uiTriggered = true;
 
-            // Update thesholdIndex based on the level
+            //Update thesholdIndex based on the level
             thesholdIndex += 1;
-           // uiTriggerThreshold[thesholdIndex] *= levelMultiplier;
+            //uiTriggerThreshold[thesholdIndex] *= levelMultiplier;
             nextPointGoal = uiTriggerThreshold[thesholdIndex];
+        }
+
+        else if (points >= nextPointGoal)
+        {
+            Debug.Log("ACTIVATE BOSS");
+            Boss.SetActive(true);
         }
 
         // Advance to the next level when the threshold for the current level is crossed
@@ -133,5 +146,10 @@ public class LevelManager : MonoBehaviour
         // Trigger your UI here, e.g., show a transition screen or rewards
         Debug.Log("Triggering UI between levels");
         uiManager.ShowLevelTransitionUI(); // Example method call
+    }
+
+    public void ActivateBOSS()
+    {
+        Boss.SetActive(true);
     }
 }

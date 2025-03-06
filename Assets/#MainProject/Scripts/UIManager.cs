@@ -29,6 +29,10 @@ public class UIManager : MonoBehaviour
 
     private List<int> shownPowerUps = new List<int>();
 
+    public Slider bossHealthSlider;
+
+    public TextMeshProUGUI bossHealthText;
+
     [SerializeField] private GameObject powerUpPanel; // UI panel for level transitions
 
     // Define a delegate and event for the point threshold crossing
@@ -172,6 +176,7 @@ public class UIManager : MonoBehaviour
         {
             CombinationManager.Instance.UnpauseGame();
             powerUpPanel.SetActive(false);
+            LevelManager.Instance.ActivateBOSS();
             CameraShake.Instance.StopShake();
         }
     }

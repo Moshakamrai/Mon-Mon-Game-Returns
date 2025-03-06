@@ -24,7 +24,11 @@ public class GroundController : MonoBehaviour
             // Get the root parent object
 
             // Perform your action here
-            collision.gameObject.GetComponent<CatHead>().splashSound = false;
+            if (collision.gameObject.GetComponent<CatHead>() != null)
+            {
+                 collision.gameObject.GetComponent<CatHead>().splashSound = false;
+            }
+           
            
         }
     }
