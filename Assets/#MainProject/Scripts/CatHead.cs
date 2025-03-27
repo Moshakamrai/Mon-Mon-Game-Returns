@@ -17,16 +17,35 @@ public class CatHead : MonoBehaviour
        
         rb = GetComponent<Rigidbody>();
         catCollider = GetComponent<MeshCollider>();
-        speed = 2f;
+        speed = 30f;
     }
 
     private void Update()
     {
-        HandleTouch();
+        HandleInput();
     }
 
-    private void HandleTouch()
+    private void HandleInput()
     {
+    #if UNITY_EDITOR || UNITY_STANDALONE
+        // PC mouse input
+        if (!istouched){
+            if (Input.GetMouseButtonDown(0))
+                {
+                    isDragging = true;
+                }
+            else if (Input.GetMouseButton(0) && isDragging)
+                {
+                    Vector2 delta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+                    MoveObject(delta);
+                }
+            else if (Input.GetMouseButtonUp(0))
+                {
+                    isDragging = false;
+                }
+        }
+    #else
+        // Mobile touch input
         if (Input.touchCount > 0 && !istouched)
         {
             Touch touch = Input.GetTouch(0);
@@ -49,7 +68,9 @@ public class CatHead : MonoBehaviour
                     break;
             }
         }
+    #endif
     }
+
 
     private void MoveObject(Vector2 deltaPosition)
     {

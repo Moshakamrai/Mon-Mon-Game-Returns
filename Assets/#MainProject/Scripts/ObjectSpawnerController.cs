@@ -58,27 +58,41 @@ public class ObjectSpawnerController : MonoBehaviour
 
     void Update()
     {
-        HandleTouch();
+        HandleInput();
     }
-
-    void HandleTouch()
+    
+    void HandleInput()
     {
+    #if UNITY_EDITOR || UNITY_STANDALONE
+        // PC mouse input
+        if (Input.GetMouseButtonDown(0))
+        {
+            TriggerSlowMotion();
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            ResetTimeScale();
+        }
+    #else
+        // Mobile touch input
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-
+    
             switch (touch.phase)
             {
                 case TouchPhase.Began:
                     TriggerSlowMotion();
                     break;
-
+    
                 case TouchPhase.Ended:
                     ResetTimeScale();
                     break;
             }
         }
+    #endif
     }
+
 
     // Function to trigger slow motion
     public void TriggerSlowMotion()
