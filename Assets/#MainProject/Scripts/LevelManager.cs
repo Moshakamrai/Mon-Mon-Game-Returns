@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
 
-    public GameObject Boss;
+    public GameObject[] Bosses;
 
     // Enum to represent different levels
     public enum GameLevel
@@ -92,7 +92,11 @@ public class LevelManager : MonoBehaviour
         else if (points >= nextPointGoal)
         {
             Debug.Log("ACTIVATE BOSS");
-            Boss.SetActive(true);
+            if (Bosses[0] != null)
+            {
+                Bosses[0].SetActive(true);
+            }
+            
         }
 
         // Advance to the next level when the threshold for the current level is crossed
@@ -148,8 +152,8 @@ public class LevelManager : MonoBehaviour
         uiManager.ShowLevelTransitionUI(); // Example method call
     }
 
-    public void ActivateBOSS()
+    public void ActivateBOSS( int index)
     {
-        Boss.SetActive(true);
+        Bosses[index].SetActive(true);
     }
 }

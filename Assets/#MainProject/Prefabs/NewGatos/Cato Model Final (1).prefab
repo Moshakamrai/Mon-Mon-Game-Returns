@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 5696929264027629315}
   - component: {fileID: 3558228747368202845}
   m_Layer: 0
-  m_Name: Cat
+  m_Name: Miso
   m_TagString: Gato
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

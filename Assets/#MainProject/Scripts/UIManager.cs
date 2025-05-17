@@ -176,7 +176,7 @@ public class UIManager : MonoBehaviour
         {
             CombinationManager.Instance.UnpauseGame();
             powerUpPanel.SetActive(false);
-            LevelManager.Instance.ActivateBOSS();
+            LevelManager.Instance.ActivateBOSS(0);
             CameraShake.Instance.StopShake();
         }
     }
