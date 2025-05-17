@@ -39,6 +39,8 @@ public class Boss1 : MonoBehaviour
         {
             //UIManager.Instance.onPointDamage -= OnPointsDamage;
         }
+        CombinationManager.Instance.bossBuff -= HandleComboMade;
+        CombinationManager.Instance.onPointDamage -= GetDamage2;
     }
 
     public void OnPointsDamage()
@@ -97,13 +99,17 @@ public class Boss1 : MonoBehaviour
 
     public void GetDamage2()
     {
-        bossHealth -= 5;
+        if (bossHealth > 0)
+        {
+            bossHealth -= 5;
 
-        bossHealth = Mathf.Clamp(bossHealth, 0, maxBossHealth); // Prevent negative health
+            bossHealth = Mathf.Clamp(bossHealth, 0, maxBossHealth); // Prevent negative health
 
-        transform.root.localScale -= new Vector3(0, 0.05f, 0.05f); 
+            transform.root.localScale -= new Vector3(0, 0.05f, 0.05f); 
 
-        UpdateBossUI(); // Update UI after changing health
+            UpdateBossUI(); // Update UI after changing health
+        }
+        
     }
 
     
