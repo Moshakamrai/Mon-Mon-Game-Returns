@@ -10,6 +10,8 @@ TagManager:
   - Ground
   - OddGato
   - BossGato
+  - Box
+  - ProjectlileTarget
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - UI
   - PostProcessing
   - GlowOnly
-  - 
+  - Box
   - 
   - 
   - 

@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/#MainProject/Scenes/Level1.unity
-    guid: cb1c4d828c5bd594d807c4c50b9d6c19
+    path: Assets/#MainProject/Scenes/Level 1 Bosses.unity
+    guid: 33aab9fa8be3433458d7bbd894af0973
   m_configObjects: {}

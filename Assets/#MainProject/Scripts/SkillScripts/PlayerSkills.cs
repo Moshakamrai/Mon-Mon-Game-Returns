@@ -269,7 +269,7 @@ public class PlayerSkills : MonoBehaviour
                             Debug.LogError("DAMAGE THE BOSS");
                             
                             Boss1 boss = rootParent.GetComponent<Boss1>();
-                            boss.GetDamage(75);
+                            //boss.GetDamage(75);
                         }
                     }
 
@@ -289,7 +289,7 @@ public class PlayerSkills : MonoBehaviour
                         {
                             Debug.LogError("DAMAGE THE BOSS");
                             Boss1 boss = rootParent.GetComponent<Boss1>();
-                            boss.GetDamage(75);
+                            //boss.GetDamage(75);
                         }
                                       
                     }
@@ -332,7 +332,7 @@ public class PlayerSkills : MonoBehaviour
                         {
                             Debug.LogError("DAMAGE THE BOSS");
                             Boss1 boss = rootParent.GetComponent<Boss1>();
-                            boss.GetDamage(75);
+                            //boss.GetDamage(75);
                         }
                     }
 
@@ -351,7 +351,7 @@ public class PlayerSkills : MonoBehaviour
                         {
                             Debug.LogError("DAMAGE THE BOSS");
                             Boss1 boss = rootParent.GetComponent<Boss1>();
-                            boss.GetDamage(75);
+                            //boss.GetDamage(75);
                         }
                     }
                 }
@@ -392,7 +392,7 @@ public class PlayerSkills : MonoBehaviour
                     {
                         Debug.LogError("DAMAGE THE BOSS");
                         Boss1 boss = collider.gameObject.GetComponent<Boss1>();
-                        boss.GetDamage(75);
+                        //boss.GetDamage(75);
                     }
                     ParticleManager.Instance.SpawnParticle("Blast", position);
                     CombinationManager.Instance.TriggerTemporaryTimeScaleChange(1.4f);

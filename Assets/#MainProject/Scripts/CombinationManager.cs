@@ -45,14 +45,18 @@ public class CombinationManager : MonoBehaviour
      
     public GameObject CombineCats(GameObject cat1, GameObject cat2)
     {
-        if (bossType == cat1.GetComponent<CatHead>().catType )
+        if (bossType == cat1.GetComponent<CatHead>().catType)
         {
             Debug.Log("BOSS SHOULD BE ENRAGED");
-            bossBuff?.Invoke();
+            ParticleManager.Instance.SpawnParticle("BossBuffSlide", cat1.transform.position);
+            //BossManager.Instance?.BuffBossByName("Teddy", 40);
+            //bossBuff?.Invoke();
         }
-        else 
+        else
         {
-            onPointDamage?.Invoke();
+            //BossManager.Instance?.DamageBossByName("Teddy", 20);
+            ParticleManager.Instance.SpawnParticle("BossNerfSlide", cat1.transform.position);
+            //onPointDamage?.Invoke();
         }
         catCount++;
         CatHead head1 = cat1.GetComponent<CatHead>();
