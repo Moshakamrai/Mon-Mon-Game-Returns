@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/#MainProject/Scenes/Level 1 Bosses.unity
     guid: 33aab9fa8be3433458d7bbd894af0973
-  m_configObjects: {}
+  m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 54e2a768a369bea4597085ff396e995f, type: 2}
+    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 1d405026897ac2d47a71be4bd6b66b33, type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 2a8db9945fc5e9542b3a1c052a112dbc, type: 2}
+    com.unity.xr.magicleap.magic_leap_settings: {fileID: 11400000, guid: 75746a46a7efebb419b5e968f322b981, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 183b7ec0a4f4d1242818db56aa92d9dc, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 6c9ce0ef7832ac14888ca706fedf1073, type: 2}
