@@ -9,14 +9,14 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Application.targetFrameRate = 1000;
-      // Time.timeScale = 1.6f;
+        Time.timeScale = 0f;
     }
     private void Update()
     {
-        
+
     }
 
-   
+
 
     // Placeholder method to determine the position to spawn the new cat
     private Vector3 GetSpawnPosition()
@@ -28,6 +28,11 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void StartGame()
+    {
+        Time.timeScale = 1.6f;
     }
 
 }

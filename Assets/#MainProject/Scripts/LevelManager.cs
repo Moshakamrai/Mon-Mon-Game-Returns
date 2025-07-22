@@ -92,10 +92,10 @@ public class LevelManager : MonoBehaviour
         else if (points >= nextPointGoal)
         {
             Debug.Log("ACTIVATE BOSS");
-            if (Bosses[0] != null)
-            {
-                Bosses[0].SetActive(true);
-            }
+            // if (Bosses[0] != null)
+            // {
+            //     Bosses[0].SetActive(true);
+            // }
             
         }
 

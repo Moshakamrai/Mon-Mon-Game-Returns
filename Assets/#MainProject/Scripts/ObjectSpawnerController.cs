@@ -36,7 +36,7 @@ public class ObjectSpawnerController : MonoBehaviour
     {
         SetNextObjectIndex();
 
-        Time.timeScale = normalTimeScale; // Set the initial time scale
+        //Time.timeScale = normalTimeScale; // Set the initial time scale
         currentSlowMotionTime = maxSlowMotionDuration;
         UIManager.Instance.SetMaxSlowMotionBar(maxSlowMotionDuration);
         shouldSpawn = true;

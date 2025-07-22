@@ -12,64 +12,71 @@ public class CatHead : MonoBehaviour
     public bool istouched;
 
     private ObjectSpawnerModel model;
+    
+
+    [SerializeField] private float mouseSpeedMultiplier = 10f;
+    [SerializeField] private float touchSpeedMultiplier = 10f;
+
     private void Start()
     {
-       
+
         rb = GetComponent<Rigidbody>();
         catCollider = GetComponent<MeshCollider>();
         speed = 30f;
     }
 
     private void Update()
-    {
-        HandleInput();
-    }
+{
+    HandleInput();
+}
 
-    private void HandleInput()
+private void HandleInput()
+{
+    // Touch Input (Mobile or WebGL touch screens)
+    if (Input.touchCount > 0 && !istouched)
     {
-    #if UNITY_EDITOR || UNITY_STANDALONE
-        // PC mouse input
-        if (!istouched){
-            if (Input.GetMouseButtonDown(0))
+        Touch touch = Input.GetTouch(0);
+
+        switch (touch.phase)
+        {
+            case TouchPhase.Began:
+                isDragging = true;
+                break;
+
+            case TouchPhase.Moved:
+                if (isDragging)
                 {
-                    isDragging = true;
-                }
-            else if (Input.GetMouseButton(0) && isDragging)
-                {
-                    Vector2 delta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+                    // Scale down touch movement (e.g., divide by screen width for consistency)
+                    Vector2 delta = touch.deltaPosition / Screen.dpi * touchSpeedMultiplier / 12;
                     MoveObject(delta);
                 }
-            else if (Input.GetMouseButtonUp(0))
-                {
-                    isDragging = false;
-                }
+                break;
+
+            case TouchPhase.Ended:
+            case TouchPhase.Canceled:
+                isDragging = false;
+                break;
         }
-    #else
-        // Mobile touch input
-        if (Input.touchCount > 0 && !istouched)
-        {
-            Touch touch = Input.GetTouch(0);
-
-            switch (touch.phase)
-            {
-                case TouchPhase.Began:
-                    isDragging = true;
-                    break;
-
-                case TouchPhase.Moved:
-                    if (isDragging)
-                    {
-                        MoveObject(touch.deltaPosition);
-                    }
-                    break;
-
-                case TouchPhase.Ended:
-                    isDragging = false;
-                    break;
-            }
-        }
-    #endif
     }
+    // Mouse Input (PC or WebGL desktop)
+    else if (!istouched)
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            isDragging = true;
+        }
+        else if (Input.GetMouseButton(0) && isDragging)
+        {
+            Vector2 delta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) * mouseSpeedMultiplier;
+            MoveObject(delta);
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            isDragging = false;
+        }
+    }
+}
+
 
 
     private void MoveObject(Vector2 deltaPosition)
