@@ -47,7 +47,7 @@ private void HandleInput()
                 if (isDragging)
                 {
                     // Scale down touch movement (e.g., divide by screen width for consistency)
-                    Vector2 delta = touch.deltaPosition / Screen.dpi * touchSpeedMultiplier / 12;
+                    Vector2 delta = touch.deltaPosition / Screen.dpi * touchSpeedMultiplier ;
                     MoveObject(delta);
                 }
                 break;
@@ -67,7 +67,7 @@ private void HandleInput()
         }
         else if (Input.GetMouseButton(0) && isDragging)
         {
-            Vector2 delta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) * mouseSpeedMultiplier;
+            Vector2 delta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) * mouseSpeedMultiplier / 12;
             MoveObject(delta);
         }
         else if (Input.GetMouseButtonUp(0))
